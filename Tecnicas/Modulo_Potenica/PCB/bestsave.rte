@@ -1,0 +1,166 @@
+ (routes 
+  (resolution mm 100000)
+  (parser
+  )
+  (parser
+  )
+  (structure_out
+   (layer TOP (type signal)
+   )
+   (layer I1 (type signal)
+   )
+   (layer I2 (type signal)
+   )
+   (layer I3 (type signal)
+   )
+   (layer I4 (type signal)
+   )
+   (layer I5 (type signal)
+   )
+   (layer I6 (type signal)
+   )
+   (layer I7 (type signal)
+   )
+   (layer I8 (type signal)
+   )
+   (layer I9 (type signal)
+   )
+   (layer I10 (type signal)
+   )
+   (layer I11 (type signal)
+   )
+   (layer I12 (type signal)
+   )
+   (layer I13 (type signal)
+   )
+   (layer I14 (type signal)
+   )
+   (layer BOT (type signal)
+   )
+  )
+  (library_out
+  (padstack $VIA_SIGNAL
+   (shape (circ TOP 203200 0 0))
+   (shape (circ I1 203200 0 0))
+   (shape (circ I2 203200 0 0))
+   (shape (circ I3 203200 0 0))
+   (shape (circ I4 203200 0 0))
+   (shape (circ I5 203200 0 0))
+   (shape (circ I6 203200 0 0))
+   (shape (circ I7 203200 0 0))
+   (shape (circ I8 203200 0 0))
+   (shape (circ I9 203200 0 0))
+   (shape (circ I10 203200 0 0))
+   (shape (circ I11 203200 0 0))
+   (shape (circ I12 203200 0 0))
+   (shape (circ I13 203200 0 0))
+   (shape (circ I14 203200 0 0))
+   (shape (circ BOT 203200 0 0))
+  )
+  )
+  (network_out
+   (Net %00000 
+   (rule
+   )
+   (wire (path TOP 203200  1134000 1324000 1134000 -492000 -500000 -492000)
+    (connect (terminal pin $NONAME4-0) (terminal pin $NONAME8-1))
+   )
+   (wire (path TOP 203200  -3118000 310000 -3118000 -227000 -2007000 -227000)
+    (connect (terminal pin $NONAME7-1) (terminal pin $NONAME3-1))
+   )
+   (wire (path TOP 203200  -2007000 -227000 -2007000 -635000 -1356133 -635000
+     -1356133 -492000 -500000 -492000)
+    (connect (terminal pin $NONAME3-1) (terminal pin $NONAME8-1))
+   )
+   (wire (path TOP 203200  1369000 2016000 1079500 2016000 1079500 1714500
+     1134000 1714500 1134000 1324000)
+    (connect (terminal pin $NONAME9-0) (terminal pin $NONAME4-0))
+   )
+   )
+   (Net %00001 
+   (rule
+   )
+   (wire (path TOP 203200  -1490000 900000 -1490000 1242000 -2000000 1242000)
+    (connect (terminal pin $NONAME1-0) (terminal pin $NONAME11-1))
+   )
+   (wire (path TOP 203200  -2007000 789000 -2000000 789000 -2000000 1242000)
+    (connect (terminal pin $NONAME3-0) (terminal pin $NONAME11-1))
+   )
+   )
+   (Net %00002 
+   (rule
+   )
+   (wire (path TOP 203200  -1490000 -116000 -1143000 -116000 -1143000 16000
+     -500000 16000)
+    (connect (terminal pin $NONAME1-1) (terminal pin $NONAME8-0))
+   )
+   (wire (path TOP 203200  -500000 16000 -500000 26000 482000 26000)
+    (connect (terminal pin $NONAME8-0) (terminal pin $NONAME2-0))
+   )
+   )
+   (Net %00003 
+   (rule
+   )
+   (wire (path TOP 203200  2150000 1324000 2150000 26000 1498000 26000)
+    (connect (terminal pin $NONAME4-1) (terminal pin $NONAME2-1))
+   )
+   (wire (path TOP 203200  500000 2766000 2413000 2766000 2413000 1324000
+     2150000 1324000)
+    (connect (terminal pin $NONAME10-1) (terminal pin $NONAME4-1))
+   )
+   )
+   (Net %00004 
+   (rule
+   )
+   (wire (path TOP 203200  543000 521000 -127000 521000 -127000 1258000
+     -500000 1258000)
+    (connect (terminal pin DIAC-1) (terminal pin $NONAME0-1))
+   )
+   )
+   (Net %00005 
+   (rule
+   )
+   (wire (path TOP 203200  -1221000 2636000 -1221000 1766000 -500000 1766000)
+    (connect (terminal pin $NONAME5-0) (terminal pin $NONAME0-0))
+   )
+   )
+   (Net %00006 
+   (rule
+   )
+   (wire (path TOP 203200  -3302000 2065000 -3302000 1143000 -3118000 1143000
+     -3118000 818000)
+    (connect (terminal pin $NONAME6-0) (terminal pin $NONAME7-0))
+   )
+   )
+   (Net %00007 
+   (rule
+   )
+   (wire (path TOP 203200  2131000 2016000 2131000 1651000 1559000 1651000
+     1559000 521000)
+    (connect (terminal pin $NONAME9-2) (terminal pin DIAC-0))
+   )
+   )
+   (Net %00008 
+   (rule
+   )
+   (wire (path TOP 203200  -2794000 2065000 -2000000 2065000 -2000000 2766000)
+    (connect (terminal pin $NONAME6-1) (terminal pin $NONAME11-0))
+   )
+   (wire (path TOP 203200  -2000000 2766000 -1651000 2766000 -1651000 2955000
+     -889000 2955000 -889000 2636000 -205000 2636000)
+    (connect (terminal pin $NONAME11-0) (terminal pin $NONAME5-1))
+   )
+   (wire (path TOP 203200  508000 2349500 127000 2349500 127000 2636000
+     -205000 2636000)
+    (connect (terminal wire) (terminal pin $NONAME5-1))
+   )
+   (wire (path TOP 203200  508000 2349500 1750000 2349500 1750000 2016000)
+    (connect (terminal wire) (terminal pin $NONAME9-1))
+   )
+   (wire (path TOP 203200  508000 2349500 508000 1905000 500000 1905000
+     500000 1242000)
+    (connect (terminal wire) (terminal pin $NONAME10-0))
+   )
+   )
+  )
+ )

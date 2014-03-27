@@ -1,0 +1,66 @@
+# header information:
+HTransmission|8.10
+
+# Views:
+Vlayout|lay
+
+# Technologies:
+Tmocmos|ScaleFORmocmos()D300.0|mocmosNumberOfMetalLayers()I3
+
+# Cell Transmission;1{lay}
+CTransmission;1{lay}||mocmos|1385645546729|1385647031432||DRC_last_good_drc_area_date()G1385646556952|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1385646556952
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NMetal-1-N-Active-Con|contact@0||-10|0||||
+NMetal-1-N-Active-Con|contact@1||0|0||||
+NMetal-1-P-Active-Con|contact@2||-10|20||||
+NMetal-1-P-Active-Con|contact@3||0|20||||
+NMetal-1-Polysilicon-1-Con|contact@5||-5|35||||
+NMetal-1-Polysilicon-1-Con|contact@6||-5|-15||||
+NN-Transistor|nmos@0||-5|0|2||RRR||SIM_spice_model(D5G1;)SNMOS
+NMetal-1-Pin|pin@5||-25|20||||
+NMetal-1-Pin|pin@9||10|20||||
+NMetal-1-Pin|pin@10||15|20||||
+NMetal-1-Pin|pin@11||15|0||||
+NMetal-1-Pin|pin@14||-25|0||||
+NMetal-1-Pin|pin@15||-5|40||||
+NMetal-1-Pin|pin@16||-20|40||||
+NMetal-1-Pin|pin@20||-5|-20||||
+NMetal-1-Pin|pin@21||-20|-20||||
+Ngeneric:Invisible-Pin|pin@23||-5|45|||||SIM_spice_card(D5G1;)S[vdd VDD 0 DC 5,vin IN 0 dc 0 pulse 0 5 5m 10n 10n 5m 10m,.tran 0 100m,.include /home/davito/Documents/UNAL/Tecnicas/Laboratorios/Laboratorio_5/Transmission_David/C5_models.txt]
+NMetal-1-Pin|pin@24||10|40||||
+NMetal-1-Pin|pin@25||-30|40||||
+NMetal-1-Pin|pin@26||-25|10||||
+NMetal-1-Pin|pin@27||-35|10||||
+NMetal-1-Pin|pin@28||15|10||||
+NMetal-1-Pin|pin@29||25|10||||
+NMetal-1-Pin|pin@30||10|-20||||
+NP-Transistor|pmos@0||-5|20|7||RRR||SIM_spice_model(D5G1;)SPMOS
+AN-Active|net@4|||S0|nmos@0|diff-bottom|-8.75|0|contact@0||-10|0
+AN-Active|net@8|||S1800|nmos@0|diff-top|-1.25|0|contact@1||0|0
+AP-Active|net@12|||S0|pmos@0|diff-bottom|-8.75|20|contact@2||-10|20
+AP-Active|net@16|||S1800|pmos@0|diff-top|-1.25|20|contact@3||0|20
+AMetal-1|net@29||1|S0|contact@2||-10|20|pin@5||-25|20
+AMetal-1|net@35||1|S1800|contact@3||0|20|pin@9||10|20
+AMetal-1|net@36||1|S1800|pin@9||10|20|pin@10||15|20
+AMetal-1|net@38||1|S0|pin@11||15|0|contact@1||0|0
+AMetal-1|net@44||1|S1800|pin@14||-25|0|contact@0||-10|0
+APolysilicon-1|net@47|||S900|nmos@0|poly-right|-5|-4.5|contact@6||-5|-15
+APolysilicon-1|net@48|||S2700|pmos@0|poly-left|-5|27|contact@5||-5|35
+AMetal-1|net@49||1|S2700|contact@5||-5|35|pin@15||-5|40
+AMetal-1|net@50||1|S0|pin@15||-5|40|pin@16||-20|40
+AMetal-1|net@54||1|S900|contact@6||-5|-15|pin@20||-5|-20
+AMetal-1|net@55||1|S0|pin@20||-5|-20|pin@21||-20|-20
+AMetal-1|net@59||1|S1800|pin@15||-5|40|pin@24||10|40
+AMetal-1|net@60||1|S0|pin@24||10|40|pin@25||-30|40
+AMetal-1|net@61||1|S900|pin@5||-25|20|pin@26||-25|10
+AMetal-1|net@62||1|S900|pin@26||-25|10|pin@14||-25|0
+AMetal-1|net@63||1|S0|pin@26||-25|10|pin@27||-35|10
+AMetal-1|net@64||1|S900|pin@10||15|20|pin@28||15|10
+AMetal-1|net@65||1|S900|pin@28||15|10|pin@11||15|0
+AMetal-1|net@66||1|S1800|pin@28||15|10|pin@29||25|10
+AMetal-1|net@67||1|S1800|pin@20||-5|-20|pin@30||10|-20
+EGND||D5G2;|pin@24||U
+EIN||D5G2;|pin@27||U
+EOUT||D5G2;|pin@29||U
+EVDD||D5G2;|pin@30||U
+X

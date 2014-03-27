@@ -1,0 +1,28 @@
+<Qucs Schematic 0.0.17>
+<Properties>
+  <View=0,0,923,800,1,0,0>
+  <Grid=10,10,0>
+  <DataSet=XOR.dat>
+  <DataDisplay=XOR.sch>
+  <OpenDisplay=1>
+  <Script=XOR.m>
+  <RunScript=0>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Drawn By:>
+  <FrameText2=Date:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Rect 139 357 737 321 3 #c0c0c0 1 00 1 -1 0.2 1 1 -166156 20000 20000 1 -1 0.5 1 315 0 225 "" "" "">
+	<"A.Vt" #5555ff 2 3 0 0 0>
+  </Rect>
+</Diagrams>
+<Paintings>
+</Paintings>

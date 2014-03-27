@@ -1,0 +1,13 @@
+David los componentes del controlador DIAC TRIAC son:
+ 
+R1 Potenciómetro de 1M
+R2 15k
+R3 15k
+R4 3.3k
+R5 no hay
+todos los diodos 1N4004
+DIAC HT34 o HT32
+TRIAC Q4010, si no lo encuentra use el c106
+El bombillo que usé es de 60W
+ 
+mayor información: http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf

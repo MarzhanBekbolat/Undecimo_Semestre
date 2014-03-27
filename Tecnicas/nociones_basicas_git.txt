@@ -1,0 +1,75 @@
+CONFIGURACIONES POR PRIMERA Y ÚNICA VEZ
+- Definir variables básicas como nombre de usuario, correo y editor predeterminado
+>>>	git config --global user.name "MY NAME"
+>>>	git config --global user.email MY_EMAIL
+>>>	git config --global core.editor MY_EDITOR
+
+MY_EDITOR puede ser cualquier editor que funcione EN CONSOLA (vi, vim, nano). Por ejemplo, gedit no sirve. No se cómo funcione en windows.
+	
+- Clonar el repositorio
+>>> cd carpeta_donde_se_ubicará_el_repo
+>>>	git clone s7645422@login1.zih.tu-dresden.de:control_fotoperiodico NOMBRE_DEL_DIRECTORIO
+	
+NOMBRE_DEL_DIRECTORIO es opcional. NO debe ser un directorio existente.
+	
+---------------------------------------------------------------------------------
+
+TRABAJO DE RUTINA
+En general, en git se requieren los siguientes pasos básicos para subir archivos al repositorio.
+
+1. Actualizar el repo local con los cambios del repo central que aun no están en la máquina local.
+>>>	git pull origin master
+	
+	A pesar de que en la mayoría de ocasiones git mezcla cambios de dos o más personas sobre un mismo archivo sin problema, es posible que se requiera resolver conflictos manualmente para poder continuar. Más adelante se explica cómo.
+
+2. Añadir archivos para ser "tracked" y  "commit the change", es decir, añadir una nueva revisión. Las revisiones sirven para recuperar un archivo en un estado anterior
+
+>>> git add .
+>>>	git commit -a -m "MY_MESSAGE"
+	
+por supuesto, MY_MESSAGE debe ser un mensaje coherente que indique qué se hizo en cada revisión.
+
+3. Subir el trabajo hecho al repositorio
+>>>	git push origin master
+
+Para usuarios de windows existe además la posibilidad de hacer las acciones anteriores con la interfaz gráfica.
+
+---------------------------------------------------------------------------------
+
+COSAS VARIAS
+
+1. Ver el historial de revisiones que se tienen en el repo local
+
+>>>	git log
+
+2. Ver el estado de los archivos. Permite ver qué archivos aun no están "tracked" (no pertenecen al índice) y qué archivos están en el índice pero no pertenecen a una revisión
+
+>>> git status
+
+3. Resolver conflictos al mezclar cambios de dos o más personas sobre un mismo archivo. Al ejecutar el comando "git pull origin master" puede aparecer el sgte mensaje 
+
+----Automatic merge failed; fix conflicts and then commit the result.----
+
+En ese caso, se debe ingresar "git status" y ver qué archivos no se pudieron mezclar (unmerged). Al abrirlos, se verá en por lo menos un parte del archivo algo similar a lo sgte.
+
+-------------------------------------------------------------------------
+<<<<<<< HEAD
+sección 23 {sección 3
+}
+=======
+sección 23
+
+sección 3 + 1
+>>>>>>> 20fd66aa6487f51b4a08ade539bc210c5723d324
+-------------------------------------------------------------------------
+
+Donde la parte superior de ======= muestra los cambios que se hiceron en la máquina local y la parte inferior los cambios que venían del repo central. Entonces, se corrige manualmente, se guarda y se ingresa
+
+>>>	git commit -a -m "MESSAGE"
+>>>	git push origin master
+
+4. Es recomendable -mas no indispensable- crear "branches", que permiten que el trabajo de las personas no se mezcle hasta que se tiene un versión "limpia", p. ej. una parte del código desarrollado funciona bien. Si es de su interés, investiguen sobre eso. Más información en http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging
+
+5. Ojo con el archivo .gitignore, en el que se definen las exteniones que NO se añaden al repositorio. Inicialmente incluí exteniones como *.gise, *.ngr, etc, que son las que se generan en la síntesis e implementación de proyectos de ISE. Esto con el fin de ahorrar espacio.
+
+

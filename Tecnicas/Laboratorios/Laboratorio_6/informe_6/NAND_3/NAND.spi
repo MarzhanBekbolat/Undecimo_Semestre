@@ -1,0 +1,19 @@
+
+*** TOP LEVEL CELL: NAND:NAND{lay}
+Mnmos@0 net@0 A net@2 gnd NMOS L=1U W=1.5U AS=8.125P AD=5P PS=11.833U PD=7.5U
+Mnmos@1 gnd B net@0 gnd NMOS L=1U W=1.5U AS=5P AD=8.125P PS=7.5U PD=12.5U
+Mnmos@2 net@67 net@2 OUT gnd NMOS L=1U W=1.5U AS=8.125P AD=5P PS=11.833U PD=7.5U
+Mnmos@3 gnd C net@67 gnd NMOS L=1U W=1.5U AS=5P AD=8.125P PS=7.5U PD=12.5U
+Mpmos@2 net@2 A VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=8.125P PS=11.5U PD=11.833U
+Mpmos@3 net@2 B VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=8.125P PS=11.5U PD=11.833U
+Mpmos@4 OUT net@2 VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=8.125P PS=11.5U PD=11.833U
+Mpmos@5 OUT C VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=8.125P PS=11.5U PD=11.833U
+
+* Spice Code nodes in cell cell 'NAND:NAND{lay}'
+vcc VCC 0 DC 5
+va A 0 dc 0 pulse 0 5 2m 10n 10n 5m 10m
+vb B 0 dc 0 pulse 0 5 5m 10n 10n 10m 20m
+vc C 0 dc 0 pulse 0 5 7m 10n 10n 20m 40m
+.tran 0 100m
+.include /home/davito/Documents/UNAL/Tecnicas/Laboratorios/Laboratorio_5/Inversor_David/C5_models.txt
+.END

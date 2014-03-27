@@ -1,0 +1,37 @@
+MOCMOS 300 nm
+Ancho de barraje VDD, GND: 8
+Ancho, largo transistores P: 10, 2
+Ancho, largo transistores N:  5, 2
+Altura de la celda: aprox. 85
+
+AND2
+AND3
+AND4
+AND5
+AND6
+AND7
+AND8
+
+FD
+FDC
+FDCE
+
+GND
+
+IBUF (hecho)
+
+INV
+
+LD
+
+OBUF(Hecho)
+
+OR2 (Hecho)
+OR3
+OR4
+OR5
+OR8
+
+VCC
+
+XOR2

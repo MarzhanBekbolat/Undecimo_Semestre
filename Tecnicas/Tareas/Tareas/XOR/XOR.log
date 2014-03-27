@@ -1,0 +1,30 @@
+Circuit: * E:\Universidad\Tecnicas de Integración\Tareas\XOR\XOR.asc
+
+Ignoring BSIM parameter XL
+Ignoring BSIM parameter XW
+Ignoring BSIM parameter XL
+Ignoring BSIM parameter XW
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Warning: Pd = 0 is less than W.
+Warning: Ps = 0 is less than W.
+Direct Newton iteration for .op point succeeded.
+
+Date: Tue Jun 25 23:53:26 2013
+Total elapsed time: 0.222 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 4647
+traniter = 4627
+tranpoints = 2180
+accept = 1958
+rejected = 222
+matrix size = 10
+fillins = 8
+solver = Normal
+Matrix Compiler1: 1,83 KB object code size  0.8/0.5/[0.3]
+Matrix Compiler2:      93 opcodes  0.3/[0.3]/0.4
+
+

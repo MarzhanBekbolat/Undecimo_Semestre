@@ -1,0 +1,17 @@
+
+*** TOP LEVEL CELL: NAND_3{lay}
+Mnmos@0 gnd A net@19 gnd NMOS L=1U W=1.5U AS=8.125P AD=8.125P PS=12.5U PD=12.5U
+Mnmos@1 net@22 B net@19 gnd NMOS L=1U W=1.5U AS=8.125P AD=8.125P PS=12.5U PD=12.5U
+Mnmos@2 net@22 C OUT gnd NMOS L=1U W=1.5U AS=9.062P AD=8.125P PS=12.5U PD=12.5U
+Mpmos@2 OUT C VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.062P PS=12.5U PD=12.5U
+Mpmos@3 OUT A VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.062P PS=12.5U PD=12.5U
+Mpmos@4 OUT B VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.062P PS=12.5U PD=12.5U
+
+* Spice Code nodes in cell cell 'NAND_3{lay}'
+vcc VCC 0 DC 5
+va A 0 dc 0 pulse 0 5 1m 10n 10n 5m 10m
+vb B 0 dc 0 pulse 0 5 5m 10n 10n 10m 20m
+vc C 0 dc 0 pulse 0 5 9m 10n 10n 20m 40m
+.tran 0 100m
+.include /home/davito/Documents/C5_models.txt
+.END

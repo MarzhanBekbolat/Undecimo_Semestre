@@ -1,0 +1,19 @@
+# header information:
+HInversor|8.10
+
+# Views:
+Vlayout|lay
+
+# Technologies:
+Tmocmos|ScaleFORmocmos()D300.0
+
+# Cell Inversor;1{lay}
+CInversor;1{lay}||mocmos|1367896340272|1367897124276|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NN-Transistor|nmos@1||-10|41|7||RR|
+NP-Transistor|pmos@0||-10|64|2||RRR|
+NMetal-1-N-Well-Con|well@0||-27|68||||
+NMetal-1-N-Well-Con|well@1||-27|60||||
+NMetal-1-N-Well-Con|well@2||7|68||||
+NMetal-1-N-Well-Con|well@3||7|60||||
+X

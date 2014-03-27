@@ -1,0 +1,90 @@
+\documentclass[11pt,graphicx,caption,rotating]{article}
+\textheight=24cm
+\textwidth=18cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+%\usepackage[utf8x]{inputenc}
+\usepackage[latin1]{inputenc}
+%\usepackage[activeacute,spanish]{babel}
+\usepackage{amssymb,amsfonts}
+\usepackage[tbtags]{amsmath}
+\usepackage{pict2e}
+\usepackage{ucs}
+\usepackage{float}
+\usepackage[all]{xy}
+\usepackage{graphics,graphicx,color,colortbl}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[tbtags]{amsmath}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[centerlast, small]{caption}
+\usepackage[colorlinks=true, citecolor=black, linkcolor=black, urlcolor=black,breaklinks=true]{hyperref}
+\hyphenation{ele-men-tos he-rra-mi-en-ta cons-tru-yen trans-fe-ren-ci-a pro-pu-es-tas si-mu-lar vi-sua-li-za-cion}
+
+\begin{document}
+\title{Thin Film Transistor TFT}
+\author{David Ricardo Martínez Hernández}
+\maketitle
+
+\section{Características}
+\noindent
+Es un tipo especial de transistor de efecto campo que se fabrica depositando finas películas de silicio activo sobre contactos metálicos y una capa de material dieléctrico.
+
+\section{Fabricación}
+\noindent
+Se pueden fabricar con una gran variedad de materiales semiconductores. El más común es el silicio. Las características del TFT basado en el silicio depende de su estado cristalino. Esto es, que la capa de semiconductor puede ser silicio amorfo, silicio microcristalino, o puede haber sido templado en un polisilicio.
+Otros materiales que pueden ser usados como semiconductores en TFTs son el seleniuro de cadmio $(CdSe)$ y óxidos de metal como el óxido de zinc.\cite{page1}\\
+Usando semiconductores y electrodos transparentes, como el indio-óxido de estaño (ITO), los dispositivos TFT pueden hacerse completamente transparentes\cite{page1}.\\
+El proceso de deposición  es realizado a temperaturas relativamente bajas. Se utiliza la deposición química de vapor y la deposición física de vapor. Además, la primera solución de procesado TFT transparente (TTFTs), sobre la base de óxido de zinc, fue anunciado en 2003 por investigadores de la Oregon State University\cite{page1}.\\
+El laboratorio portugués CENIMAT en la Universidade Nova de Lisboa ha producido el primer TFT completamente transparente a temperatura ambiente. CENIMAT también desarrolló el primer transistor de papel, que puede conducir a aplicaciones tales como revistas y páginas de revistas con imágenes en movimiento.\cite{page1}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.5]{image.png}
+      \caption{Matriz de una pantalla TFT (Tomado de \cite{1}).}
+  \label{fig1}
+\end{figure}
+\noindent
+\begin{enumerate}
+ \item[1] Placa de vidrio. 
+ \item[2-3] Polarización horizontal y vertical.
+ \item[4] Mascara de color RGB.
+ \item[5-6] Línea de comando horizontal y vertical.
+ \item[7] Resistente capa de polímero.
+ \item[8] Separadores
+ \item[9] Thin film transistors.
+ \item[10] Electrodo frontal.
+ \item[11] Electrodos traseros
+\end{enumerate}
+
+
+
+\section{Aplicaciones}
+\noindent
+Son usados en televisores, visualizadores de pantalla plana y proyectores
+La aplicación mejor conocida de los transistores de película delgada son las pantallas TFT LCDs, una implementación de la tecnología de pantalla de cristal líquido. Los transistores están integrados en el propio panel, lo que reduce la diafonía entre píxeles y mejorar la estabilidad de la imagen.
+Desde 2008, muchos monitores y televisores LCD a color utilizan esta tecnología. Las pantallas TFT son muy utilizados en radiografía digital y aplicaciones de radiografía general. Un TFT se utiliza tanto en la captura directa e indirecta como base para el receptor de imagen en radiología médica.
+Las nuevas pantallas AMOLED (Diodo orgánico de emisión de luz de matriz activa) también contienen una capa TFT.
+El aspecto más beneficioso de la tecnología TFT es un transistor para cada píxel en la pantalla. A medida que cada transistor disminuye, lo hace también la cantidad de carga necesaria para el control. Esto permite un redibujo muy rápido de la pantalla.
+Antes de la TFT, las pantallas LCD de matriz pasiva no podían mostrar con fluidez imágenes en movimiento rápido. Un puntero arrastrado a través de la pantalla, por ejemplo, del punto A al punto B, parece desaparecer entre los dos puntos. En un monitor TFT se puede realizar el seguimiento del puntero, lo que resulta en una pantalla que se puede utilizar para vídeo, juegos y otras formas de multimedia.
+
+\bibliographystyle{ieeetran}
+\begin{thebibliography}{99}
+
+\bibitem{page1} \url{http://en.wikipedia.org/wiki/Thin-film_transistor}, Pagina del curso Seguridad Industrial $2013-3$, visitada el 12 de Agosto de 2013.
+
+\bibitem{page2} \url{http://www.electrochem.org/dl/interface/spr/spr13/spr13_p055_061.pdf}
+
+\bibitem{page3} \url{http://www.eecs.berkeley.edu/~tking/tft.html}
+
+
+
+\end{thebibliography}
+\end{document}

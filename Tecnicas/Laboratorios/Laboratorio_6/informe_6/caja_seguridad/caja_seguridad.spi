@@ -1,0 +1,29 @@
+
+
+*** CELL: Inversor{lay}
+.SUBCKT Inversor IN OUT VCC gnd
+Mnmos@2 gnd IN OUT gnd NMOS L=1U W=2.5U AS=10P AD=8.125P PS=14U PD=11.5U
+Mpmos@1 VCC IN OUT VCC PMOS L=1U W=5U AS=10P AD=11.875P PS=14U PD=16.5U
+.ENDS Inversor
+
+*** TOP LEVEL CELL: caja_seguridad:caja_seguridad{lay}
+XInversor@1 A net@66 VCC gnd Inversor
+XInversor@2 net@35 OUT VCC gnd Inversor
+Mnmos@1 net@123 net@66 net@35 gnd NMOS L=1U W=1.5U AS=7.975P AD=6.125P PS=11.5U PD=9U
+Mnmos@2 net@125 B net@123 gnd NMOS L=1U W=1.5U AS=6.125P AD=6.125P PS=9U PD=9U
+Mnmos@3 net@129 C net@125 gnd NMOS L=1U W=1.5U AS=6.125P AD=6.125P PS=9U PD=9U
+Mnmos@4 gnd D net@129 gnd NMOS L=1U W=1.5U AS=6.125P AD=7.375P PS=9U PD=11.5U
+Mpmos@4 net@35 net@66 VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=7.975P PS=11.5U PD=11.5U
+Mpmos@6 net@35 B VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=7.975P PS=11.5U PD=11.5U
+Mpmos@7 net@35 C VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=7.975P PS=11.5U PD=11.5U
+Mpmos@8 net@35 D VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=7.975P PS=11.5U PD=11.5U
+
+* Spice Code nodes in cell cell 'caja_seguridad:caja_seguridad{lay}'
+vcc VCC 0 DC 5
+va A 0 dc 0 pulse 0 5 2m 10n 10n 5m 10m
+vb B 0 dc 0 pulse 0 5 5m 10n 10n 10m 20m
+vc C 0 dc 0 pulse 0 5 7m 10n 10n 20m 40m
+vd D 0 dc 0 pulse 0 5 11m 10n 10n 40m 80m
+.tran 0 100m
+.include /home/davito/Documents/UNAL/Tecnicas/Laboratorios/Laboratorio_5/Inversor_David/C5_models.txt
+.END

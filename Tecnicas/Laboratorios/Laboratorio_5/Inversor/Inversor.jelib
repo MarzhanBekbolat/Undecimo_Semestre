@@ -1,0 +1,55 @@
+# header information:
+HInversor|8.10
+
+# Views:
+Vlayout|lay
+
+# Technologies:
+Tmocmos|MoCMOSAlternateActivePolyRules()BT|ScaleFORmocmos()D300.0|mocmosNumberOfMetalLayers()I3|mocmosSecondPolysilicon()BF
+
+# Cell Inversor;1{lay}
+CInversor;1{lay}||mocmos|1384991269740|1384994144096||DRC_last_good_drc_area_date()G1384993269157|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1384993269157
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NMetal-1-N-Active-Con|contact@0||-5|-10||||
+NMetal-1-N-Active-Con|contact@1||5|-10||||
+NMetal-1-P-Active-Con|contact@2||5|20||||
+NMetal-1-P-Active-Con|contact@3||-5|20||||
+NMetal-1-Polysilicon-1-Con|contact@7||-15|5||||
+NN-Transistor|nmos@1||0|-10|2||RRR||SIM_spice_model(D5G1;)SSPICE-Model
+NMetal-1-Pin|pin@0||-5|40||||
+NMetal-1-Pin|pin@6||-15|40||||
+NMetal-1-Pin|pin@7||10|40||||
+NMetal-1-Pin|pin@8||-5|-20||||
+NMetal-1-Pin|pin@10||-15|-25||||
+NMetal-1-Pin|pin@11||10|-25||||
+NMetal-1-Pin|pin@12||5|5||||
+NMetal-1-Pin|pin@13||15|5||||
+NPolysilicon-1-Pin|pin@14||0|5||||
+NMetal-1-Pin|pin@15||-20|5||||
+NMetal-1-Pin|pin@16||-25|5||||
+Ngeneric:Invisible-Pin|pin@17||0|-10|||||SIM_spice_card(D5G1;)Stext
+NMetal-1-Pin|pin@18||-15|40||||
+NMetal-1-Pin|pin@19||10|40||||
+NP-Transistor|pmos@0||0|20|7||RRR||SIM_spice_model(D5G1;)SSPICE-Model
+AN-Active|net@0|||S0|nmos@1|diff-bottom|-3.75|-10|contact@0||-5|-10
+AN-Active|net@2|||S1800|nmos@1|diff-top|3.75|-10|contact@1||5|-10
+AP-Active|net@8|||S1800|pmos@0|diff-top|3.75|20|contact@2||5|20
+AP-Active|net@11|||S0|pmos@0|diff-bottom|-3.75|20|contact@3||-5|20
+AMetal-1|net@14||1|S2700|contact@3||-5|20|pin@0||-5|40
+AMetal-1|net@24||7|S1800|pin@6||-15|40|pin@7||10|40
+AMetal-1|net@25||1|S900|contact@0||-5|-10|pin@8||-5|-20
+AMetal-1|net@28||7|S1800|pin@10||-15|-25|pin@11||10|-25
+AMetal-1|net@29||1|S900|contact@2||5|20|pin@12||5|5
+AMetal-1|net@30||1|S900|pin@12||5|5|contact@1||5|-10
+AMetal-1|net@31||1|S1800|pin@12||5|5|pin@13||15|5
+APolysilicon-1|net@38|||S900|pmos@0|poly-right|0|13|pin@14||0|5
+APolysilicon-1|net@39|||S900|pin@14||0|5|nmos@1|poly-left|0|-5.5
+APolysilicon-1|net@40|||S0|pin@14||0|5|contact@7||-15|5
+AMetal-1|net@41||1|S0|contact@7||-15|5|pin@15||-20|5
+AMetal-1|net@42||1|S0|pin@15||-20|5|pin@16||-25|5
+AMetal-1|net@43||7|S1800|pin@18||-15|40|pin@19||10|40
+EGND||D5G2;|pin@11||U
+EIN||D5G2;|pin@16||U
+EOUT||D5G2;|pin@13||U
+EVDD||D5G2;|pin@7||U
+X

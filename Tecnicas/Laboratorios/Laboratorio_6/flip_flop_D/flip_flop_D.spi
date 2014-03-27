@@ -1,0 +1,58 @@
+*** SPICE deck for cell flip_flop_D{lay} from library flip_flop_D
+*** Created on Sun Dec 01, 2013 20:49:46
+*** Last revised on Mon Dec 02, 2013 22:30:47
+*** Written on Tue Dec 03, 2013 11:52:08 by Electric VLSI Design System,
+*version 9.04
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+*CMOS/BULK-NWELL (PRELIMINARY PARAMETERS)
+*.OPTIONS NOMOD DEFL=3UM DEFW=3UM DEFAD=70P DEFAS=70P LIMPTS=1000
+*+ITL5=0 RELTOL=0.01 ABSTOL=500PA VNTOL=500UV LVLTIM=2
+*+LVLCOD=1
+*.MODEL N NMOS LEVEL=1
+*+KP=60E-6 VTO=0.7 GAMMA=0.3 LAMBDA=0.05 PHI=0.6
+*+LD=0.4E-6 TOX=40E-9 CGSO=2.0E-10 CGDO=2.0E-10 CJ=.2MF/M^2
+*.MODEL P PMOS LEVEL=1
+*+KP=20E-6 VTO=0.7 GAMMA=0.4 LAMBDA=0.05 PHI=0.6
+*+LD=0.6E-6 TOX=40E-9 CGSO=3.0E-10 CGDO=3.0E-10 CJ=.2MF/M^2
+*.MODEL DIFFCAP D CJO=.2MF/M^2
+
+*** SUBCIRCUIT Inversor FROM CELL Inversor:Inversor{lay}
+.SUBCKT Inversor gnd IN OUT vdd
+Mnmos@2 gnd IN OUT gnd NMOS L=0.6U W=1.5U AS=3.6P AD=2.925P PS=8.4U PD=6.9U
+Mpmos@1 vdd IN OUT vdd PMOS L=0.6U W=3U AS=3.6P AD=4.275P PS=8.4U PD=9.9U
+
+* Spice Code nodes in cell cell 'Inversor:Inversor{lay}'
+*vdd VDD 0 DC 5
+*vin IN 0 dc 0 pulse 0 5 5m 10n 10n 5m 10m
+*.tran 0 100m
+*.include /home/davito/Documents/UNAL/Tecnicas/Laboratorios/Laboratorio_5/Inversor/C5_models.txt
+.ENDS Inversor
+
+*** SUBCIRCUIT transmision FROM CELL transmision{lay}
+.SUBCKT transmision C gnd IN OUT vdd
+XInversor@0 gnd C net@20 vdd Inversor
+Mnmos@0 OUT C IN gnd NMOS L=0.6U W=1.5U AS=2.745P AD=2.7P PS=6.75U PD=6.6U
+Mpmos@0 OUT net@20 IN vdd PMOS L=0.6U W=1.5U AS=2.745P AD=2.7P PS=6.75U PD=6.6U
+.ENDS transmision
+
+*** TOP LEVEL CELL: flip_flop_D{lay}
+XInversor@0 gnd net@41 net@103 vdd Inversor
+XInversor@1 gnd net@104 net@109 vdd Inversor
+XInversor@3 gnd CLK net@41 vdd Inversor
+XInversor@4 gnd CLK net@186 vdd Inversor
+XInversor@5 gnd net@130 Q vdd Inversor
+XInversor@7 gnd net@109 net@274 vdd Inversor
+XInversor@8 gnd Q net@164 vdd Inversor
+Xtransmis@0 net@41 gnd D net@104 vdd transmision
+Xtransmis@1 net@103 gnd net@274 net@104 vdd transmision
+Xtransmis@2 CLK gnd net@109 net@130 vdd transmision
+Xtransmis@4 net@186 gnd net@130 net@164 vdd transmision
+
+* Spice Code nodes in cell cell 'flip_flop_D{lay}'
+vdd VDD 0 DC 5
+v_in D 0 dc 0 pulse 0 5 5m 10n 10n 17m 34m
+v_clk CLK 0 dc 0 pulse 0 5 5m 10n 10n 5m 10m
+.tran 0 100m
+.include ./C5_models.txt
+.END

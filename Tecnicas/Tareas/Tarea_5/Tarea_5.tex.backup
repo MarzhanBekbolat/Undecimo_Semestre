@@ -1,0 +1,64 @@
+\documentclass[11pt,graphicx,caption,rotating]{article}
+\textheight=24cm
+\textwidth=18cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+\usepackage[utf8x]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage{amssymb,amsfonts}
+\usepackage[tbtags]{amsmath}
+\usepackage{pict2e}
+\usepackage{ucs}
+\usepackage{float}
+\usepackage[all]{xy}
+\usepackage{graphics,graphicx,color,colortbl}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[tbtags]{amsmath}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[centerlast, small]{caption}
+\usepackage[colorlinks=true, citecolor=black, linkcolor=black, urlcolor=black,breaklinks=true]{hyperref}
+\hyphenation{ele-men-tos he-rra-mi-en-ta cons-tru-yen trans-fe-ren-ci-a pro-pu-es-tas si-mu-lar vi-sua-li-za-cion}
+
+\begin{document}
+\title{\textbf{Simulación en spice de una compuerta XOR utilizando la tecnología CNM25}}
+\author{David Ricardo Martínez Hernández}
+\date{}
+\maketitle
+\noindent
+Inicialmente para realizar la simulación se debe construir el circuito lógico correspondiente a la compuerta XOR. Esto debe hacerse teniendo en cuenta las siguientes instrucciones\footnote{Tomado de: Jaramillo, Iván. Tendencias en diseño digital CMOS VLS-I.}:
+\begin{itemize}
+ \item Se asigna un par complementario (un transistor nmos y un transistor pmos con las compuertas conectadas entre sí) para cada entrada.
+ \item Se genera una red de transistores nmos que conecte la salida a tierra de acuerdo a la función lógica a implementar.
+ \item Se genera una red de transistores pmos que conecte la salida a V DD de acuerdo a la función lógica a implementar.
+ \item Se diseñan las redes nmos y pmos, también conocidas como PDN y PUN, respectivamente, de tal forma que solo una se comporte como un interruptor cerrado para todas las posibles combinaciones de las entradas.
+\end{itemize}
+\noindent
+La tabla de verdad de esta compuerta se muestra en el Cuadro~\ref{tab1} para poder construir la función lógica:
+\begin{table}[H]
+  \centering
+    \begin{tabular}{|c|c|c|}\hline
+      $A$ & $B$ & $A XOR B$ \\ \hline
+      0 & 0 & 0 \\ \hline
+      0 & 1 & 1 \\ \hline
+      1 & 0 & 1 \\ \hline
+      1 & 1 & 0 \\ \hline
+    \end{tabular}
+   \caption{Tabla de verdad para la compuerta XOR.}
+  \label{tab1}
+\end{table}
+\noindent
+Se puede concluir que la función lógica se puede resimir en 
+$$F = AB + BA$$
+La función negada de la ecuación anterior se obtiene
+$$\bar{F} = -A \bar{B} + B \bar{A} = -A \bar{B} -\cdot B \bar{A} = (\bar{A} + B)\cdot (\bar{B} + A) $$
+
+\end{document}

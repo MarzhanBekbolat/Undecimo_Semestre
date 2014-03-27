@@ -1,0 +1,57 @@
+# header information:
+HINV|8.10
+
+# Views:
+Vlayout|lay
+
+# Technologies:
+Tmocmos|MoCMOSAlternateActivePolyRules()BT|ScaleFORmocmos()D300.0|mocmosNumberOfMetalLayers()I3|mocmosSecondPolysilicon()BF
+
+# Cell INV;1{lay}
+CINV;1{lay}||mocmos|1390753934172|1390755708292||DRC_last_good_drc_area_date()G1390754442379|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1390754442379
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NMetal-1-P-Active-Con|contact@1||0|23||5||
+NMetal-1-N-Active-Con|contact@2||-10|-24||||
+NMetal-1-N-Active-Con|contact@3||0|-24||||
+NMetal-1-Polysilicon-1-Con|contact@8||-17|1||||
+NMetal-1-P-Active-Con|contact@11||-10|23||5||
+NN-Transistor|nmos@2||-5|-24|2||R|
+NPolysilicon-1-Pin|pin@5||-5|1||||
+NMetal-1-Pin|pin@6||13|0||||
+NMetal-1-Pin|pin@7||0|0||||
+NMetal-1-Pin|pin@8||38|-38||||
+NMetal-1-Pin|pin@9||37|39||||
+NMetal-1-Pin|pin@11||-37|39||||
+NMetal-1-Pin|pin@12||-38|39||||
+NMetal-1-Pin|pin@13||-27|-38||||
+NMetal-1-Pin|pin@15||-37|-38||||
+NMetal-1-Pin|pin@16||-10|-38||||
+NMetal-1-Pin|pin@17||-10|39||||
+NMetal-1-Pin|pin@18||-21|1||||
+NMetal-1-Pin|pin@20||-37|1||||
+NP-Transistor|pmos@2||-5|23|7||R|
+AP-Active|net@2|||S1800|contact@11||-10|23|pmos@2|diff-top|-8.75|23
+AP-Active|net@3|||S0|contact@1||0|23|pmos@2|diff-bottom|-1.25|23
+AN-Active|net@6|||S1800|contact@2||-10|-24|nmos@2|diff-top|-8.75|-24
+AN-Active|net@7|||S0|contact@3||0|-24|nmos@2|diff-bottom|-1.25|-24
+APolysilicon-1|net@15|||S2700|nmos@2|poly-right|-5|-19.5|pin@5||-5|1
+APolysilicon-1|net@16|||S2700|pin@5||-5|1|pmos@2|poly-left|-5|16
+APolysilicon-1|net@17|||S0|pin@5||-5|1|contact@8||-17|1
+AMetal-1|net@18||1|S900|contact@1||0|23|pin@7||0|0
+AMetal-1|net@19||1|S900|pin@7||0|0|contact@3||0|-24
+AMetal-1|net@20|||S0|pin@6||13|0|pin@7||0|0
+AMetal-1|net@31||1|S0|pin@11||-37|39|pin@12||-38|39
+AMetal-1|net@32||1|S0|pin@13||-27|-38|pin@15||-37|-38
+AMetal-1|net@40||5|S1800|pin@15||-37|-38|pin@16||-10|-38
+AMetal-1|net@41||5|S1800|pin@16||-10|-38|pin@8||38|-38
+AMetal-1|net@42||1|S900|contact@2||-10|-24|pin@16||-10|-38
+AMetal-1|net@43||5|S1800|pin@12||-38|39|pin@17||-10|39
+AMetal-1|net@44||5|S1800|pin@17||-10|39|pin@9||37|39
+AMetal-1|net@45||1|S2700|contact@11||-10|23|pin@17||-10|39
+AMetal-1|net@46||1|S0|contact@8||-17|1|pin@18||-21|1
+AMetal-1|net@48||1|S0|pin@18||-21|1|pin@20||-37|1
+EGND||D5G2;|pin@15||U
+EIN||D5G2;|pin@20||U
+EOUT||D5G2;|pin@6||U
+EVDD||D5G2;|pin@11||U
+X

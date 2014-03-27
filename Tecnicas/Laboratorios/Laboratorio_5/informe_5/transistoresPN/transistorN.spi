@@ -1,0 +1,32 @@
+*** SPICE deck for cell transistorN{lay} from library transistorN
+*** Created on Sun Nov 24, 2013 20:49:12
+*** Last revised on Mon Nov 25, 2013 11:45:42
+*** Written on Mon Nov 25, 2013 11:46:12 by Electric VLSI Design System,
+*version 9.03
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+*CMOS/BULK-NWELL (PRELIMINARY PARAMETERS)
+*.OPTIONS NOMOD DEFL=3UM DEFW=3UM DEFAD=70P DEFAS=70P LIMPTS=1000
+*+ITL5=0 RELTOL=0.01 ABSTOL=500PA VNTOL=500UV LVLTIM=2
+*+LVLCOD=1
+*.MODEL N NMOS LEVEL=1
+*+KP=60E-6 VTO=0.7 GAMMA=0.3 LAMBDA=0.05 PHI=0.6
+*+LD=0.4E-6 TOX=40E-9 CGSO=2.0E-10 CGDO=2.0E-10 CJ=.2MF/M^2
+*.MODEL P PMOS LEVEL=1
+*+KP=20E-6 VTO=0.7 GAMMA=0.4 LAMBDA=0.05 PHI=0.6
+*+LD=0.6E-6 TOX=40E-9 CGSO=3.0E-10 CGDO=3.0E-10 CJ=.2MF/M^2
+*.MODEL DIFFCAP D CJO=.2MF/M^2
+*** WARNING: no ground connection for N-transistor wells in cell
+*'transistorN:transistorN{lay}'
+
+*** TOP LEVEL CELL: transistorN:transistorN{lay}
+Mnmos@0 D G S gnd NMOS L=1.2U W=3.6U AS=4.68P AD=4.68P PS=11.4U PD=11.4U
+
+* Spice Code nodes in cell cell 'transistorN:transistorN{lay}'
+vin1 S 0 dc 0
+vin3 G 0 dc 0
+vin4 D 0 dc 0
+.dc vin4 0 7 1m vin3 1 5 1
+*.dc vin3 0 5 1m vin4 1 5 1
+.include /media/d/Documents/a_Tecnicas_de_integracion/lab_tecnicas/informe_5/C5_models.txt
+.END

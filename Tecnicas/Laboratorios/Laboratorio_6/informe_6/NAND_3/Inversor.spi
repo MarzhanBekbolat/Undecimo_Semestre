@@ -1,0 +1,50 @@
+*** SPICE deck for cell NAN_3{lay} from library NAN_3
+*** Created on Wed Dec 04, 2013 15:15:34
+*** Last revised on Wed Dec 04, 2013 15:51:18
+*** Written on Wed Dec 04, 2013 15:51:31 by Electric VLSI Design System, 
+*version 8.10
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+.OPTIONS NOMOD NOPAGE
+*CMOS/BULK-NWELL (PRELIMINARY PARAMETERS)
+.OPTIONS NOMOD DEFL=3UM DEFW=3UM DEFAD=70P DEFAS=70P LIMPTS=1000
++ITL5=0 RELTOL=0.01 ABSTOL=500PA VNTOL=500UV LVLTIM=2
++LVLCOD=1
+.MODEL N NMOS LEVEL=1
++KP=60E-6 VTO=0.7 GAMMA=0.3 LAMBDA=0.05 PHI=0.6
++LD=0.4E-6 TOX=40E-9 CGSO=2.0E-10 CGDO=2.0E-10 CJ=.2MF/M^2
+.MODEL P PMOS LEVEL=1
++KP=20E-6 VTO=0.7 GAMMA=0.4 LAMBDA=0.05 PHI=0.6
++LD=0.6E-6 TOX=40E-9 CGSO=3.0E-10 CGDO=3.0E-10 CJ=.2MF/M^2
+.MODEL DIFFCAP D CJO=.2MF/M^2
+
+*** CELL: Inversor:Inversor{lay}
+.SUBCKT Inversor IN OUT VCC gnd
+Mnmos@2 gnd IN OUT gnd NMOS L=1U W=2.5U AS=10P AD=8.125P PS=14U PD=11.5U
+Mpmos@1 VCC IN OUT VCC PMOS L=1U W=5U AS=10P AD=11.875P PS=14U PD=16.5U
+.ENDS Inversor
+
+*** CELL: NAND:NAND{lay}
+.SUBCKT NAND A B OUT VCC gnd
+Mnmos@0 net@0 A OUT gnd NMOS L=1U W=1.5U AS=8.125P AD=5P PS=11.833U PD=7.5U
+Mnmos@1 gnd B net@0 gnd NMOS L=1U W=1.5U AS=5P AD=8.125P PS=7.5U PD=12.5U
+Mpmos@2 OUT A VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=8.125P PS=11.5U 
++PD=11.833U
+Mpmos@3 OUT B VCC VCC PMOS L=1U W=2.5U AS=8.125P AD=8.125P PS=11.5U 
++PD=11.833U
+.ENDS NAND
+
+*** TOP LEVEL CELL: NAN_3{lay}
+XInversor@0 net@23 OUT net@38 net@45 Inversor
+XNAND@0 A B net@17 net@38 net@45 NAND
+XNAND@1 net@17 C net@23 net@38 net@45 NAND
+
+* Spice Code nodes in cell cell 'NAN_3{lay}'
+vcc VCC 0 DC 5
+va A 0 dc 0 pulse 0 5 2m 10n 10n 5m 10m
+vb B 0 dc 0 pulse 0 5 5m 10n 10n 10m 20m
+vc C 0 dc 0 pulse 0 5 7m 10n 10n 20m 40m
+.tran 0 100m
+.include 
++/home/davito/Documents/UNAL/Tecnicas/Laboratorios/Laboratorio_5/Inversor_David/C5_models.txt
+.END

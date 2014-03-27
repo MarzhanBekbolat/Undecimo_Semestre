@@ -1,0 +1,19 @@
+
+*** TOP LEVEL CELL: AND_3{lay}
+Mnmos@0 gnd A net@31 gnd NMOS L=1U W=1.5U AS=8.125P AD=8.5P PS=12.5U PD=13U
+Mnmos@1 net@2 B net@31 gnd NMOS L=1U W=1.5U AS=8.125P AD=8.125P PS=12.5U PD=12.5U
+Mnmos@2 net@2 C net@9 gnd NMOS L=1U W=1.5U AS=9.062P AD=8.125P PS=12.5U PD=12.5U
+Mnmos@4 gnd net@9 OUT gnd NMOS L=1U W=1.5U AS=9.125P AD=8.5P PS=13U PD=13U
+Mpmos@0 net@9 C VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.062P PS=12.5U PD=12.5U
+Mpmos@1 net@9 A VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.062P PS=12.5U PD=12.5U
+Mpmos@2 net@9 B VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.062P PS=12.5U PD=12.5U
+Mpmos@3 OUT net@9 VCC VCC PMOS L=1U W=2.5U AS=9.375P AD=9.125P PS=12.5U PD=13U
+
+* Spice Code nodes in cell cell 'AND_3{lay}'
+vcc VCC 0 DC 5
+va A 0 dc 0 pulse 0 5 1m 10n 10n 5m 10m
+vb B 0 dc 0 pulse 0 5 5m 10n 10n 10m 20m
+vc C 0 dc 0 pulse 0 5 9m 10n 10n 20m 40m
+.tran 0 100m
+.include /home/davito/Documents/C5_models.txt
+.END

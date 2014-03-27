@@ -1,0 +1,320 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%Title: C:\Users\David Ricardo\Documents\UNAL\Tecnicas\Modulo_Potenica\PCB\Potenica_PCB.LYT
+%%Creator: LX_PSDVC
+%%CreationDate: Fri Dec 06 17:11:14 2013
+%%BoundingBox: (atend)
+%%EndComments
+
+/docstate save def
+% Global scaling/translation
+0.072 0.072 scale
+1 setlinecap
+
+% Purpose: draw simple line
+% Usage:   x1 y1 x2 y2 t line
+/line
+ { setlinewidth
+   4 2 roll
+   moveto
+   lineto
+   stroke
+ } bind def
+
+% Purpose: draw elliptical quadrant arc
+% Usage:   cx cy xs ys xe ye a b q t
+%    where cx,cy are centre of ellipse
+%          a,b are ellipse diameter
+%          xs,ys, xe,ye are start, end coords
+%          q is quadrant number.
+%          t is line width
+/quadrant
+ { gsave
+   setlinewidth
+   /q exch def
+   /b exch def
+   /a exch def
+   /ye exch currentlinewidth add def
+   /xe exch currentlinewidth sub def
+   /ys exch currentlinewidth sub def
+   /xs exch currentlinewidth add def
+   /cy exch def
+   /cx exch def
+   /ysf b a div def
+   cx cy translate
+   q 1 eq { /xs xs neg def /xe xe neg def } if
+   q 2 eq { /xs xs neg def
+            /ys ys neg def
+            /xe xe neg def
+            /ye ye neg def
+          } if
+   q 3 eq { /ys ys neg def /ye ye neg def } if
+   newpath
+   xe ys moveto
+   xs ys lineto
+   xs ye lineto
+   xe ye lineto
+   closepath
+   clip
+   newpath
+   1 ysf scale
+   q 90 mul rotate
+   a 0 moveto 0 0 a 0 90 arc
+   stroke
+   grestore
+ } bind def
+
+% Purpose: draw bezier arc
+% Usage:   x1 y1 ... x4, y4 t
+%          xn yn are bezier points
+%          t is line width
+/bezier
+ { setlinewidth
+   moveto
+   curveto
+   stroke
+ } bind def
+
+% Purpose: draw filled rectangle
+% Usage:   x1 y1 x2 y2 fillbox
+/fillbox
+ { /y2 exch def
+   /x2 exch def
+   /y1 exch def
+   /x1 exch def
+   x1 y1 moveto
+   x2 y1 lineto
+   x2 y2 lineto
+   x1 y2 lineto
+   closepath
+   fill
+ } bind def
+
+% Purpose: draw elliptical blob in colour c (0 black, 1 white)
+% Usage:   x y a b c ellipse
+/eblob
+ { /c exch def
+   /b exch 2 div def
+   /a exch 2 div def
+   /y exch def
+   /x exch def
+   gsave
+   1 c sub setgray
+   x y translate
+   1 b a div scale
+   0 0 a 0 360 arc
+   fill
+   grestore
+ } bind def
+
+% Purpose: draw rectangular blob in colour c (0 black, 1 white)
+% Usage:   x y a b c rectangle
+/rblob
+ { /c exch def
+   /b exch 2 div def
+   /a exch 2 div def
+   /y exch def
+   /x exch def
+   gsave
+   1 c sub setgray
+   x a sub y b sub moveto
+   x a add y b sub lineto
+   x a add y b add lineto
+   x a sub y b add lineto
+   closepath
+   fill
+   grestore
+ } bind def
+
+% Purpose: draw polygonal blob in colour c (0 black, 1 white)
+% Usage:   xn yn ... x1 y1 np c pblob
+/pblob
+ { /c exch def
+   /np exch def
+   1 c sub setgray
+   moveto
+   np 1 sub
+   {lineto} repeat
+   closepath
+   fill
+ } bind def
+
+% Purpose: draw track segment of specified thickness
+% Usage:   x1 y1 x2 y2 t thickline
+/track
+ { gsave
+   0 setlinecap
+   setlinewidth
+   4 2 roll
+   moveto
+   lineto
+   stroke
+   grestore
+ } bind def
+%%EndProlog
+
+300 dup translate
+0 0 moveto 2459 0 lineto 2459 1672 lineto 0 1672 lineto clip newpath
+588 304 362 304 100 track
+362 304 100 100 1 eblob
+362 304 151 516 100 track
+588 304 588 219 100 track
+588 219 100 100 1 eblob
+588 219 663 144 100 track
+663 144 100 100 1 eblob
+663 144 803 144 100 track
+803 144 100 100 1 eblob
+803 144 859 200 100 track
+859 200 100 100 1 eblob
+859 200 1181 200 100 track
+1824 914 1824 1043 80 track
+1824 1043 80 80 1 eblob
+1824 1043 1802 1064 80 track
+1802 1064 80 80 1 eblob
+1802 1064 1802 1186 80 track
+1802 1186 80 80 1 eblob
+1802 1186 1916 1186 80 track
+591 882 717 882 100 track
+717 882 100 100 1 eblob
+717 882 792 808 100 track
+792 808 100 100 1 eblob
+792 808 792 748 100 track
+591 882 591 707 100 track
+591 707 100 100 1 eblob
+591 707 588 704 100 track
+1181 400 978 400 100 track
+978 400 100 100 1 eblob
+978 400 926 348 100 track
+926 348 100 100 1 eblob
+926 348 792 348 100 track
+1181 400 1185 404 100 track
+1185 404 100 100 1 eblob
+1185 404 1567 404 100 track
+2224 914 2224 519 100 track
+2224 519 100 100 1 eblob
+2224 519 2109 404 100 track
+2109 404 100 100 1 eblob
+2109 404 1967 404 100 track
+2224 914 2327 1017 80 track
+2327 1017 80 80 1 eblob
+2327 1017 2327 1368 80 track
+2327 1368 80 80 1 eblob
+2327 1368 2213 1482 80 track
+2213 1482 80 80 1 eblob
+2213 1482 1574 1482 80 track
+1591 599 1327 861 100 track
+1327 861 100 100 1 eblob
+1327 861 1327 888 100 track
+1327 888 100 100 1 eblob
+1327 888 1181 888 100 track
+897 1430 897 1193 100 track
+897 1193 100 100 1 eblob
+897 1193 1002 1088 100 track
+1002 1088 100 100 1 eblob
+1002 1088 1181 1088 100 track
+78 1206 78 915 100 track
+78 915 100 100 1 eblob
+78 915 151 843 100 track
+151 843 100 100 1 eblob
+151 843 151 716 100 track
+2216 1186 2216 1043 80 track
+2216 1043 80 80 1 eblob
+2216 1043 2102 1043 80 track
+2102 1043 80 80 1 eblob
+2102 1043 1991 931 80 track
+1991 931 80 80 1 eblob
+1991 931 1991 599 80 track
+591 1482 591 1318 100 track
+591 1318 100 100 1 eblob
+591 1318 479 1206 100 track
+479 1206 100 100 1 eblob
+479 1206 278 1206 100 track
+1577 1293 100 100 1 eblob
+1577 1293 1577 1168 100 track
+1577 1168 100 100 1 eblob
+1577 1168 1574 1164 100 track
+1574 1164 100 100 1 eblob
+1574 1164 1574 882 100 track
+1577 1293 100 100 1 eblob
+1296 1430 1434 1293 100 track
+1434 1293 100 100 1 eblob
+1434 1293 1577 1293 100 track
+1577 1293 80 80 1 eblob
+1577 1293 1602 1318 80 track
+1602 1318 80 80 1 eblob
+1602 1318 2066 1318 80 track
+2066 1318 80 80 1 eblob
+2066 1318 2066 1186 80 track
+1296 1430 1154 1574 100 track
+1154 1574 100 100 1 eblob
+1154 1574 820 1574 100 track
+820 1574 100 100 1 eblob
+820 1574 728 1482 100 track
+728 1482 100 100 1 eblob
+728 1482 591 1482 100 track
+1824 914 1771 861 100 track
+1771 861 100 100 1 eblob
+1771 861 1771 266 100 track
+1771 266 100 100 1 eblob
+1771 266 1705 200 100 track
+1705 200 100 100 1 eblob
+1705 200 1181 200 100 track
+1181 1088 150 150 1 eblob
+1181 1088 30 30 0 eblob
+1181 888 150 150 1 eblob
+1181 888 30 30 0 eblob
+1181 689 150 150 1 eblob
+1181 689 30 30 0 eblob
+792 748 150 150 1 eblob
+792 748 30 30 0 eblob
+792 348 150 150 1 eblob
+792 348 30 30 0 eblob
+1567 404 150 150 1 eblob
+1567 404 30 30 0 eblob
+1967 404 150 150 1 eblob
+1967 404 30 30 0 eblob
+588 704 150 150 1 eblob
+588 704 30 30 0 eblob
+588 304 150 150 1 eblob
+588 304 30 30 0 eblob
+1824 914 150 150 1 eblob
+1824 914 30 30 0 eblob
+2224 914 150 150 1 eblob
+2224 914 30 30 0 eblob
+897 1430 150 150 1 eblob
+897 1430 30 30 0 eblob
+1296 1430 150 150 1 eblob
+1296 1430 30 30 0 eblob
+78 1206 150 150 1 eblob
+78 1206 30 30 0 eblob
+278 1206 150 150 1 eblob
+278 1206 30 30 0 eblob
+151 716 150 150 1 eblob
+151 716 30 30 0 eblob
+151 516 150 150 1 eblob
+151 516 30 30 0 eblob
+1181 400 150 150 1 eblob
+1181 400 30 30 0 eblob
+1181 200 150 150 1 eblob
+1181 200 30 30 0 eblob
+1991 599 150 150 1 eblob
+1991 599 30 30 0 eblob
+1591 599 150 150 1 eblob
+1591 599 30 30 0 eblob
+1856 1246 1856 1126 1976 1126 1976 1246 4 1 pblob
+1916 1186 30 30 0 eblob
+2006 1246 2006 1126 2126 1126 2126 1246 4 1 pblob
+2066 1186 30 30 0 eblob
+2156 1246 2156 1126 2276 1126 2276 1246 4 1 pblob
+2216 1186 30 30 0 eblob
+1574 882 150 150 1 eblob
+1574 882 30 30 0 eblob
+1574 1482 150 150 1 eblob
+1574 1482 30 30 0 eblob
+591 1482 150 150 1 eblob
+591 1482 30 30 0 eblob
+591 882 150 150 1 eblob
+591 882 30 30 0 eblob
+docstate restore
+
+%%Trailer
+%%BoundingBox: 0 0 220 163

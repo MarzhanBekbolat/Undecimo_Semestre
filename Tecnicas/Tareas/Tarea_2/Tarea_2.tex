@@ -1,0 +1,65 @@
+\documentclass[11pt,graphicx,caption,rotating]{article}
+\textheight=24cm
+\textwidth=18cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+%\usepackage[utf8x]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage{amssymb,amsfonts}
+\usepackage[tbtags]{amsmath}
+\usepackage{pict2e}
+\usepackage{ucs}
+\usepackage{float}
+\usepackage[all]{xy}
+\usepackage{graphics,graphicx,color,colortbl}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[tbtags]{amsmath}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[centerlast, small]{caption}
+\usepackage[colorlinks=true, citecolor=black, linkcolor=black, urlcolor=black,breaklinks=true]{hyperref}
+\hyphenation{ele-men-tos he-rra-mi-en-ta cons-tru-yen trans-fe-ren-ci-a pro-pu-es-tas si-mu-lar vi-sua-li-za-cion}
+
+\begin{document}
+\title{\textbf{Diodos para hacer osciladores}}
+\author{David Ricardo Martínez Hernández \textbf{Código}:$261931$}
+\date{}
+\maketitle
+
+\section{Diodo GUNN}
+\noindent
+Es una forma de diodo usado en la electrónica de alta frecuencia. El principio de funcionamiento del diodo es el denominado \textbf{efecto gunn}; para que se dé este efecto, el material semiconductor debe tener una propiedad importante: \textbf{que tenga dos bandas de energía muy cercanas en la banda de conducción}. A diferencia de los diodos ordinarios construidos con regiones tipo P o N, solamente tiene regiones del tipo N.\\
+Posee tres regiones:
+\begin{itemize}
+ \item Dos de ellas tienen regiones N fuertemente dopadas.
+ \item Una región delgada intermedia de material ligeramente dopado.
+\end{itemize}
+\noindent
+Los diodos Gunn son usados para construir osciladores en el rango de frecuencias comprendido entre los $10\, GHz$ y frecuencias aún más altas (hasta $THz$). Este diodo se usa en combinación con circuitos resonantes construidos con guías de ondas, cavidades coaxiales y resonadores.\\
+Los diodos Gunn suelen fabricarse de arseniuro de galio para osciladores de hasta $200\, GHz$, mientras que los de Nitruro de Galio pueden alcanzar los $3\, THz$.
+
+\section{Diodo Impatt}
+\noindent
+También conocido como diodo ``read'', pertenece también a los llamados semiconductores osciladores de ``resistencia negativa''; funciona estando conectado de forma inversa y cerca del voltaje de ruptura, entonces se produce en él una avalancha de electrones aumentando tanto la corriente como el voltaje, hasta llegar a un punto en el cual se presenta una ``resistencia negativa'' y en conjunto con el circuito de resonancia producen oscilaciones a altas frecuencias ($3-100\, GHz$). Este se utiliza para transmisiones y radares.\\
+Si un electrón libre con suficiente energía golpea un átomo de silicio, se puede romper la unión covalente de silicio y liberar un electrón del enlace covalente. Si las ganancias de la energía de electrones liberados por estar en un campo eléctrico y libera otros electrones de otros enlaces covalentes a continuación, este proceso puede conectar en cascada muy rápidamente en una reacción en cadena de la producción de un gran número de electrones y un gran flujo de corriente. Este fenómeno se llama efecto avalancha.
+
+
+
+\bibliographystyle{ieeetran}
+\begin{thebibliography}{99}
+
+\bibitem{page1} Dispositivos Activos de Microondas II: Osciladores. Sitio web ``\url{http://dspace.unav.es/dspace/bitstream/10171/18746/7/Tema5_DispositivosActivosII_2009v1.pdf}'', visitada el 20 de Enero de 2014.
+
+\bibitem{page2} Gunn Diodoe. Sitio web ``\url{http://en.wikipedia.org/wiki/Gunn_diode}'', visitada el 20 de Enero de 2014.
+
+\bibitem{page3} Impatt Diode. Sitio web ``\url{http://en.wikipedia.org/wiki/Impatt_diode}'', visitada el 20 de Enero de 2014.
+\end{thebibliography}
+\end{document}

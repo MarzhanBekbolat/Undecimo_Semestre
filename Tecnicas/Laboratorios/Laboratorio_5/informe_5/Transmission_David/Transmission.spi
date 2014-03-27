@@ -1,0 +1,30 @@
+*** SPICE deck for cell Transmission{lay} from library Transmission
+*** Created on Thu Nov 28, 2013 08:32:26
+*** Last revised on Thu Nov 28, 2013 08:57:11
+*** Written on Thu Nov 28, 2013 08:57:20 by Electric VLSI Design System,
+*version 8.10
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+*.OPTIONS NOMOD NOPAGE
+*CMOS/BULK-NWELL (PRELIMINARY PARAMETERS)
+*.OPTIONS NOMOD DEFL=3UM DEFW=3UM DEFAD=70P DEFAS=70P LIMPTS=1000
+*+ITL5=0 RELTOL=0.01 ABSTOL=500PA VNTOL=500UV LVLTIM=2
+*+LVLCOD=1
+*.MODEL N NMOS LEVEL=1
+**+KP=60E-6 VTO=0.7 GAMMA=0.3 LAMBDA=0.05 PHI=0.6
+*+LD=0.4E-6 TOX=40E-9 CGSO=2.0E-10 CGDO=2.0E-10 CJ=.2MF/M^2
+*.MODEL P PMOS LEVEL=1
+*+KP=20E-6 VTO=0.7 GAMMA=0.4 LAMBDA=0.05 PHI=0.6
+*+LD=0.6E-6 TOX=40E-9 CGSO=3.0E-10 CGDO=3.0E-10 CJ=.2MF/M^2
+*.MODEL DIFFCAP D CJO=.2MF/M^2
+
+*** TOP LEVEL CELL: Transmission{lay}
+Mnmos@0 IN vdd OUT gnd NMOS L=0.6U W=1.5U AS=3.6P AD=3.6P PS=8.4U PD=8.4U
+Mpmos@0 IN gnd OUT vdd PMOS L=0.6U W=3U AS=3.6P AD=3.6P PS=8.4U PD=8.4U
+
+* Spice Code nodes in cell cell 'Transmission{lay}'
+vdd VDD 0 DC 5
+vin IN 0 dc 0 pulse 0 5 5m 10n 10n 5m 10m
+.tran 0 100m
+.include /home/davito/Documents/UNAL/Tecnicas/Laboratorios/Laboratorio_5/Transmission_David/C5_models.txt
+.END

@@ -1,0 +1,34 @@
+# header information:
+HtransistorN|9.03
+
+# Views:
+Vlayout|lay
+
+# Technologies:
+Tmocmos|MoCMOSAlternateActivePolyRules()BT|ScaleFORmocmos()D300.0|mocmosNumberOfMetalLayers()I3|mocmosSecondPolysilicon()BF
+
+# Cell transistorN;1{lay}
+CtransistorN;1{lay}||mocmos|1385344152320|1385397942712||DRC_last_good_drc_area_date()G1385396743998|DRC_last_good_drc_bit()I18|DRC_last_good_drc_date()G1385396743998
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NMetal-1-N-Active-Con|contact@0||14.5|11.5||||
+NMetal-1-N-Active-Con|contact@1||14.5|-2.5||||
+NMetal-1-Polysilicon-1-Con|contact@2||-10|4.5||||
+NN-Transistor|nmos@0||14.5|4.5|9|2|||SIM_spice_model(D5G1;)SNMOS
+NMetal-1-Pin|pin@0||32|11.5||||
+NMetal-1-Pin|pin@1||31.5|-2.5||||
+NMetal-1-Pin|pin@2||-20.5|4.5||||
+Ngeneric:Invisible-Pin|pin@3||14.5|-13|||||SIM_spice_card(D5G1;)Svin1 S 0 dc 0
+Ngeneric:Invisible-Pin|pin@4||14.5|-14.5|||||SIM_spice_card(D5G1;)Svin3 G 0 dc 0
+Ngeneric:Invisible-Pin|pin@5||14.5|-16|||||SIM_spice_card(D5G1;)Svin4 D 0 dc 0
+Ngeneric:Invisible-Pin|pin@6||14.5|-17.5|||||SIM_spice_card(D5G1;)S.dc vin4 0 5 1m vin3 0 5 1
+Ngeneric:Invisible-Pin|pin@8||14.5|-19|||||SIM_spice_card(D5G1;)S.include /media/d/Documents/a_Tecnicas_de_integracion/lab_tecnicas/informe_5/C5_models.txt
+AN-Active|net@0|||S2700|nmos@0|diff-top|14.5|9|contact@0||14.5|11.5
+AN-Active|net@1|||S900|nmos@0|diff-bottom|14.5|-0.5|contact@1||14.5|-2.5
+AMetal-1|net@2||1|S1800|contact@0||14.5|11.5|pin@0||32|11.5
+AMetal-1|net@3||1|S1800|contact@1||14.5|-2.5|pin@1||31.5|-2.5
+APolysilicon-1|net@4|||S0|nmos@0|poly-left|6.5|4.5|contact@2||-10|4.5
+AMetal-1|net@5||1|S0|contact@2||-10|4.5|pin@2||-20.5|4.5
+ED||D5G2;|pin@1||U
+EG||D5G2;|pin@2||U
+ES||D5G2;|pin@0||U
+X

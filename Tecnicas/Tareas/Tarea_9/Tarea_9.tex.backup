@@ -1,0 +1,85 @@
+\documentclass[11pt,graphicx,caption,rotating]{article}
+\textheight=24cm
+\textwidth=18cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+\usepackage[utf8x]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage{amssymb,amsfonts}
+\usepackage[tbtags]{amsmath}
+\usepackage{pict2e}
+\usepackage{ucs}
+\usepackage{float}
+\usepackage[all]{xy}
+\usepackage{graphics,graphicx,color,colortbl}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[tbtags]{amsmath}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[centerlast, small]{caption}
+\usepackage[colorlinks=true, citecolor=black, linkcolor=black, urlcolor=black,breaklinks=true]{hyperref}
+\hyphenation{ele-men-tos he-rra-mi-en-ta cons-tru-yen trans-fe-ren-ci-a pro-pu-es-tas si-mu-lar vi-sua-li-za-cion}
+
+\begin{document}
+\title{\textbf{Diodos para hacer osciladores}}
+\author{David Ricardo Martínez Hernández}
+\date{}
+\maketitle
+\noindent
+Se requiere realizar el diseño y simulación de la celda estándar para una compuerta NAND a través del software Electric, basándose en la tecnología AMI y considerando $t_r=3t_f$.
+
+\section{Diseño}
+\noindent
+Para realizar la compuerta NAND en la tecnología AMI en Electric sera utilizada la libreria \textit{C5models}.\\
+La ecu(\ref{ecu1}) que definen el tiempo de subida es
+\begin{equation}
+ t_r = k'_p\frac{L_pC_L}{W_p}
+\label{ecu1}
+\end{equation}
+\noindent
+La ecu(\ref{ecu2}) que definen el tiempo de bajada es
+\begin{equation}
+ t_f = k'_n\frac{L_nC_L}{W_n}
+\label{ecu2}
+\end{equation}
+\noindent
+Donde:\\
+$C_L$  es la capaitancia de salida.\\
+$k'$ es el parámetro de transconductancia para cada transistor.\\
+$W$ es el ancho del transistor.\\
+$L$ es el largo del transistor.\\\\
+El parámetro de transconductancia del proceso para cada transistor se define en ecu.(\ref{ecu3}) y ecu.(\ref{ecu4}):
+\begin{equation}
+ k'_p =  \mu _p C_{OX} = \mu _p \frac{t_{OX}}{\varepsilon _{Si O_2} }
+ \label{ecu3}
+\end{equation}
+\begin{equation}
+ k'_n =  \mu _n C_{OX} = \mu _n \frac{t_{OX}}{\varepsilon _{Si O_2} }
+ \label{ecu4}
+\end{equation}
+\noindent
+Donde:\\
+$t_{OX}$ es el ancho del óxido del transistor.\\
+$\varepsilon _{SiO_2}$ es la permitividad del óxido de silicio.\\
+$\mu$ es la movilidad de huecos electrones según corresponda.\\\\
+Los tiempos se obtienen de ecu.(\ref{ecu5}):
+\begin{equation}
+ \mu _p \frac{t_{OX}}{\varepsilon _{SiO_2}} \frac{L_pC_L}{W_p}  = 3 \mu _n \frac{t_{OX}}{\varepsilon _{SiO_2}} \frac{L_nC_L}{W_n}
+ \label{ecu5}
+\end{equation}
+\noindent
+De acuerdo a la tecnología de diseño se tiene que:\\
+$\mu _p = 212.0166131\, [cm^2/s]$.
+
+
+
+
+\end{document}
