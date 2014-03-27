@@ -1,0 +1,8 @@
+
+main Controller   davito:35400
+
+username: davito
+
+/opt/cst/CST_STUDIO_SUITE_2011
+
+

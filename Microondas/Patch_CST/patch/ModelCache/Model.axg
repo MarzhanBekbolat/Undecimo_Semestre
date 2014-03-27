@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CSTAuxiliaryGeometry version="20101228">
+  <BoundingBox name="BoundingBox">
+    <BoxBody position="-82.3406 -91.8418 -44.2176" dimension="164.681 183.684 91.9903"/>
+  </BoundingBox>
+  <Axes name="GlobalAxes">
+    <AxesBody position="0 0 0" dimension="15 15 15"/>
+  </Axes>
+  <WaveguidePort name="port1">
+    <Wire lines="0 1 1 2 2 3 3 4" points="-4.10141 -47.7241 3.655 4.10141 -47.7241 3.655 4.10141 -47.7241 -0.1 -4.10141 -47.7241 -0.1 -4.10141 -47.7241 3.655"/>
+    <Label text="1"/>
+  </WaveguidePort>
+  <Materials>
+    <Material name="current^Material">
+      <Color value="1 0.501961 0.501961"/>
+      <Transparency value="0"/>
+      <LineStrength value="3"/>
+      <Lit value="1"/>
+      <Shininess value="5"/>
+      <DepthTest value="1"/>
+      <ClipMode value="ClipAbove"/>
+    </Material>
+    <Material name="voltage^Material">
+      <Color value="0 0.501961 0.501961"/>
+      <Transparency value="0"/>
+      <LineStrength value="3"/>
+      <Lit value="1"/>
+      <Shininess value="5"/>
+      <DepthTest value="1"/>
+      <ClipMode value="ClipAbove"/>
+    </Material>
+    <Material name="cone^Material">
+      <Color value="1 1 1"/>
+      <Transparency value="0"/>
+      <LineStrength value="1"/>
+      <Lit value="1"/>
+      <Shininess value="5"/>
+      <DepthTest value="1"/>
+      <ClipMode value="ClipAbove"/>
+    </Material>
+    <Material name="Coil^Material">
+      <Color value="1 0.501961 0.501961"/>
+      <Transparency value="0.8"/>
+      <LineStrength value="1"/>
+      <Lit value="1"/>
+      <Shininess value="5"/>
+      <DepthTest value="1"/>
+      <ClipMode value="ClipAbove"/>
+    </Material>
+  </Materials>
+</CSTAuxiliaryGeometry>

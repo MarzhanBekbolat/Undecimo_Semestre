@@ -1,0 +1,199 @@
+\documentclass[11pt,graphicx,caption,rotating]{article}
+\textheight=24cm
+\textwidth=18cm
+\topmargin=-2cm
+\oddsidemargin=0cm
+%\usepackage[utf8x]{inputenc}
+\usepackage[latin1]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage{amssymb,amsfonts}
+\usepackage[tbtags]{amsmath}
+\usepackage{pict2e}
+\usepackage{ucs}
+\usepackage{float}
+\usepackage[all]{xy}
+\usepackage{graphics,graphicx,color,colortbl}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[tbtags]{amsmath}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{subcaption}
+\usepackage[centerlast, small]{caption}
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue, urlcolor=blue,breaklinks=true]{hyperref}
+\hyphenation{ele-men-tos he-rra-mi-en-ta cons-tru-yen trans-fe-ren-ci-a pro-pu-es-tas si-mu-lar vi-sua-li-za-cion}
+
+\begin{document}
+\title{\textbf{Diseño y Simulación de una Antena tipo parche a $2.4\, GHz$}}
+\author{David Ricardo Martínez Hernández \textbf{Código}:$261931$}
+\date{}
+\maketitle
+
+\section{Marco Teórico}
+\noindent
+Las Antenas Microcinta, como se muestra en la Fig.~\ref{fig1}, consisten en una capa muy fina en forma de tira metálica (parche) por encima de un plano de tierra.\\
+La tira metálica (parche) y el plano de tierra están separados por una lámina dieléctrica (referido como el sustrato), como se muestra en la Fig.~\ref{fig1}. Hay numerosos sustratos que se pueden utilizar para el diseño de antenas Microcinta, y sus constantes dieléctricas están por lo general entre $2,2 \leq \varepsilon _r \leq 12$.
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.6]{micro.png}
+	\caption{Antena Microcinta (Tomado de \cite{balanice}, pÃ¡g. $812$).}
+	\label{fig1}
+\end{figure}
+\noindent
+El parche radiante puede ser cuadrado, rectangular, tira fina (dipolo), circular, elíptica, triangular, o puede ser cualquier otra configuración.\\
+Existen muchas configuraciones que pueden ser utilizadas para alimentar antenas de Microcintas. Las cuatro más conocidas son: la lí­nea Microcinta, la sonda coaxial, el acoplamiento de apertura y el acoplamiento de proximidad.
+
+\subsection{Modelo de Lí­nea de Transmisión}
+\noindent
+\textit{``Una antena microcinta rectangular se puede representar como un arreglo de dos aperturas radiantes estrechas (ranuras), cada una de anchura $W$ y altura $h$, separados por una distancia $L$. Básicamente el modelo de lí­nea de transmisión representa la antena Microcinta por dos ranuras, separadas por una baja impedancia $Z_c$ y una lí­nea de transmisión de longitud $L$''}\footnote{Balanice, Constantine A. 2005, ``Antenna theory analysis and desing'', \textit{John Wiley \& Sons, Inc.}, Third Edition, pÃ¡g. $816$.}.\\
+Este método utiliza las siguientes ecuaciones para determinar los parámetros bá­sicos del arreglo:\\
+La ecu(\ref{ecu1}) se utiliza para determinar el ancho del parche:
+\begin{equation}
+  W_{opt}  = \frac{1}{2}\frac{{\lambda _0 }}{{\sqrt {\varepsilon _{average} } }}
+\label{ecu1}
+\end{equation}
+\noindent
+donde
+\begin{equation*}
+ \varepsilon _{average}  = \frac{1}{{\varepsilon _r  + 1}}
+\end{equation*}
+\noindent
+La ecu(\ref{ecu2}) se utiliza para determinar el valor de $\varepsilon _r$:
+\begin{equation}
+ \varepsilon _{erf}  = \frac{{\varepsilon _r  + 1}}{2} + \frac{{\varepsilon _r  - 1}}{{2\sqrt {1 + 12\frac{h}{W}} }}
+\label{ecu2}
+\end{equation}
+\noindent
+La ecu(\ref{ecu3}) se utiliza para determinar la variación de la longitud:
+\begin{equation}
+ \Delta L = 0.412\frac{{\varepsilon _{erf}  + 0.3}}{{\varepsilon _{erf}  - 0.258}}\frac{{\frac{W}{h} + 0.264}}{{\frac{W}{h} + 0.8}}h
+\label{ecu3}
+\end{equation}
+\noindent
+Determinación de la longitud del parche ecu(\ref{ecu4}):
+\begin{equation}
+ L_{patch} = \frac{{\lambda _g }}{2} - 2\Delta L = \frac{c}{{2\sqrt {\varepsilon _{erf} } }} - 2\Delta L
+\label{ecu4}
+\end{equation}
+La ecu(\ref{ecu7}) se utiliza para determinar la resistencia de entrada $R_{in}$:
+\begin{equation}
+ R_{in}  = \frac{1}{{2\left( {G_e  + G_{12} } \right)}}
+\label{ecu7}
+\end{equation}
+\noindent
+Donde:
+\begin{equation}
+ G_e  = \frac{{2{\mathop{\rm P}\nolimits} _{rad} }}{{\left| {V_0 } \right|^2 }} = \frac{{ - 2 + \cos \left( X \right) + XS_i \left( X \right) + \frac{{\sin \left( X \right)}}{X}}}{{120\pi ^2 }}
+\label{ecu5}
+\end{equation}
+\noindent
+donde:
+$$X = k_0 W$$
+$${S_i \left( X \right)} = \int\limits_0^X {\frac{{\sin u}}{u}du}$$
+
+\begin{equation}
+ G_{12}  = \frac{1}{{120\pi ^2 }}\int\limits_0^X {\left[ {\sin \frac{{k_0 W}}{2}\cos \theta } \right]} ^2 J_0 \left( {k_0 L\sin \theta } \right)\sin ^3 \theta d\theta
+\label{ecu6}
+\end{equation}
+
+\section{Descripción del Método}
+\noindent
+Dado que la antena debe funcionar a $f=2.4 \pm 1\%\ GHz$, la antena rectangular tipo parche debe tener una polarización ortogonal al eje del plano.
+
+\subsection{Diseño de la antena tipo parche}
+\noindent
+Dada la ecu(\ref{ecu1}), se determino el ancho de la antena $W=38.2229\ mm$.\\
+Para determinar la longitud de la antena, es necesario calcular la variación de la longitud descrita por la ecu(\ref{ecu3}), para determinar la longitud de la antena se hace uso de la ecu(\ref{ecu4}) dando como resultado $L=29.8861\ mm$.\\
+Al obtener los valores $W$ y $L$, se calculo la impedancia de entrada del parche por medio de las ecuaciones (\ref{ecu5}), (\ref{ecu6}) y (\ref{ecu7}), dando como resultado $R_{in}=320.3543\ \Omega$.\\
+Como ya se determino la impedancia de entrada del parche, es necesario hacer una acople a $50\ \Omega$, para ello se utilizo un acoplador a $\lambda/4$, para este caso se usaron dos acoples diferentes.\\
+El primer acople tiene una lí­nea de transmisión con $Z_c=56.5.599852\, \Omega$. Para lograr una acople a $50\ \Omega$ se adiciono una segunda lí­nea de transmisión a $Z_c=53.1976748\, \Omega$, esto se utilizo el parche con el fin de lograr una impedancia de $50\, \Omega$ y así­ acoplarla a la impedancia caracteristica de un generador real.
+
+\subsection{Diseño final del sistema Microcinta}
+\noindent
+Al tener todos los parámetros fí­sicos del parche, se realizó el diseño de toda la red de Microcinta en CST STUDIO SUITE, Figuras~\ref{fig5} y \ref{fig6}.
+\begin{figure}[H]
+ \centering
+  \begin{minipage}[b]{0.3\textwidth}
+   \includegraphics[scale=0.5]{patch2d.png}
+    \caption{Esquema diseñado en CST en $2D$}
+   \label{fig5}
+  \end{minipage} \quad
+  \begin{minipage}[b]{0.3\textwidth}
+   \includegraphics[scale=0.525]{patch3d.png}
+    \caption{Esquema diseñado en CST en $3D$}
+   \label{fig6}
+  \end{minipage}
+\end{figure}
+  
+\section{Resultados de la Simulación}
+\noindent
+Se simulo en CST la antena anterior dando los resultados mostrados en las Figura \ref{fig12}, \ref{fig13} \ref{fig7}, \ref{fig8}, \ref{fig9},\ref{fig10}, \ref{fig11} en las cuales se obtuvieron los lóbulos que irradia.\\
+la Figura.~\ref{fig12} muestra el comportamiento de los parámetros $S$ de la antena, como se observa a una frecuencia cercana a los $2.4\, GHz$ la magnitud del parámetro tiende a los $-8\, dB$, esto permite que la ganancia de la antena aumente en dicha frecuencia y su coeficiente de reflexión tienda a $0$.
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{s.png}
+	\caption{Parámetros S de la antena.}
+	\label{fig12}
+\end{figure}
+\noindent
+La Figura~\ref{fig13} muestra la radiación del campo lejano, con su respectiva gráfica de ganancia. A demas se puede observar que este antena no es directiva practica mente en forma de elepse, esto quiere decir que no es una antena tan directiva pero tampoco es una antena muy receptiva. Para poder lograr que sea directiva es necesario realizar un arreglo de antenas tipo parche, y dependiendo su confiuración si es un patrón ``suma'' es necesario que los parches no tengan ningún desface entre ellos, este arreglo permite que se haga una radiación directiva.\\
+Para que la antena sea receptora se realiza un patron ``resta'', es decir que la mitad del arreglo debe estar desfasado $180°$ respecto a la otra mita.
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{abs.png}
+	\caption{Radiación del valor absoluto de Theta y Phi.}
+	\label{fig13}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{axial.png}
+	\caption{Radiación Axial.}
+	\label{fig7}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{theta.png}
+	\caption{Radiación Theta.}
+	\label{fig8}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{thetap.png}
+	\caption{Fase de Theta.}
+	\label{fig9}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{phi.png}
+	\caption{Radiación Phi.}
+	\label{fig10}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.5]{phip.png}
+	\caption{Fase de Phi.}
+	\label{fig11}
+\end{figure}
+
+\section{Conclusiones}
+\noindent
+\begin{itemize}
+ \item La directividad de una antena tipo parche no es tan buena como se espera, aunque su construcción es relativamente sencilla y no es tan costosa como otras antenas. Aunque se puede construir una antena con una mayor directividad si se realiza un arreglo.
+\end{itemize}
+
+\bibliographystyle{ieeetran}
+\begin{thebibliography}{99}
+
+\bibitem{balanice} Balanice, Constantine A. 2005
+{\em ``Antenna theory analysis and desing''}, \textit{John Wiley \& Sons, Inc.}, Third Edition.
+
+\bibitem{page1} Feko ``Feko User's Manual'', en lÃƒÂ­nea, 21 Npviembre de 2010, Disponible en \url{http://people.ee.ethz.ch/~fieldcom/pps-antenna/doc/UserManual.pdf}.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,39 @@
+*** File Version: 5.00
+
+Solvertype: 100
+Meshtype: 0
+Number of ports: 1
+Portnames: 1
+Modenumbers: 1
+Portlabels: ""
+Number of frequency-points: 1
+Fmin: 1.400000e+009
+Fmax: 3.400000e+009
+Fscale: 1.000000e+009
+
+
+
+*** newset
+
+*** newmode
+SetType: 100
+Portname: 1
+Modenumber: 1
+Modetype: 3
+Zwave: 1.977032e+002 0.000000e+000
+Zline: 5.227291e+001 0.000000e+000
+Zref: 0.000000e+000 0.000000e+000
+Accuracy: 5.197710e-015
+Fdev: 2.400000e+009
+Fmin: 1.400000e+009
+Fmax: 3.400000e+009
+Fcut: 0.000000e+000
+Alpha: 0.000000e+000
+Beta: 9.584894e+001
+PortModeCalcState: 1
+PortModeConsState: 0
+*** endmode
+
+*** endset
+
+

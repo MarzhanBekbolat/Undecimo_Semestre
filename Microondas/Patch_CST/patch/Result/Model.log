@@ -1,0 +1,375 @@
+Build version: 2011.0 Release from 2011-01-14 (change 155209)
+
+Starting adaptive port meshing.
+
+--------------------------------------------------------------------------------
+Mode calculation for port 1:
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------
+  Port   Mode   Type        Z-Wave        Z-Wave-Sigma  Z-Line        F-Cutoff
+  1      1      QTEM        197           2.84e-014     47.2          ---
+  ----------------------------------------------------------------------------
+
+Pass 1 successfully completed. 
+
+
+--------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------
+  Port   Mode   Type        Z-Wave        Z-Wave-Sigma  Z-Line        F-Cutoff
+  1      1      QTEM        204           7.33e-011     53.1          ---
+  ----------------------------------------------------------------------------
+
+Pass 2 successfully completed. Delta (Line Imp.): 11.139889%
+
+
+--------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------
+  Port   Mode   Type        Z-Wave        Z-Wave-Sigma  Z-Line        F-Cutoff
+  1      1      QTEM        210           1.84e-009     54.8          ---
+  ----------------------------------------------------------------------------
+
+Pass 3 successfully completed. Delta (Line Imp.): 3.072211%
+
+
+--------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------
+  Port   Mode   Type        Z-Wave        Z-Wave-Sigma  Z-Line        F-Cutoff
+  1      1      QTEM        218           5.22e-010     52.3          ---
+  ----------------------------------------------------------------------------
+
+Pass 4 successfully completed. Delta (Line Imp.): 4.797438%
+
+Adaptive port meshing finished. 
+
+--------------------------------------------------------------------------------
+
+Build version: 2011.0 Release from 2011-01-14 (change 155209)
+Solver module: Time Domain: S-Parameter (Win 64)
+
+
+--------------------------------------------------------------------------------
+======================================================================
+ Solver cycle: 1
+======================================================================
+
+Stimulation at port 1 (mode 1) 
+
+
+--------------------------------------------------------------------------------
+Units settings: 
+
+  Dimensions: mm
+  Frequency:  GHz
+  Time:       ns
+
+--------------------------------------------------------------------------------
+Mesh statistics:
+
+   Hexahedral mesh type: PBA
+
+   Parallelization type: none
+
+
+--------------------------------------------------------------------------------
+Boundary conditions: 
+
+  YZsymmetry: none
+  XZsymmetry: none
+  XYsymmetry: none
+
+  Xmin: expanded open
+  Xmax: expanded open
+
+  Ymin: expanded open
+  Ymax: expanded open
+
+  Zmin: expanded open
+  Zmax: expanded open
+
+  PML-Type: Convolution PML
+
+--------------------------------------------------------------------------------
+Frequency settings: 
+
+  Fmin:    1.4
+  Fmax:    3.4
+  Nfsteps: 1001
+
+--------------------------------------------------------------------------------
+Waveguide boundaries:
+
+Port: 1
+
+  ----------------------------------------------------------------------------
+  Port   Mode   Type        Z-Wave        Z-Wave-Sigma  Z-Line        F-Cutoff
+  1      1      QTEM        198           0             52.3          ---
+  ----------------------------------------------------------------------------
+
+Field update statistics:
+
+  Number of components in total: 	334193
+  Number of lossy metal components:	7163
+
+Subcycling state:      Automatically deactivated
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Steady state energy criterion met, solver stopped.
+
+--------------------------------------------------------------------------------
+
+  ----------------------------------------------------------------------------
+                      Peak memory used (kB)         Free physical memory (kB) 
+                      Physical     Virtual          At begin     Minimum      
+  ----------------------------------------------------------------------------
+  Matrices calc.      47052        163440           999988       989492       
+  Solver run total    44368        180892           1011808      972936       
+  ----------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Solver Statistics:
+
+  Computer name:                   	DAVITO 
+       GPU info:                  	GPU computing not activated
+       Number of threads used:      	2 
+
+  Number of mesh cells:             	53159 
+  Excitation duration:              	3.554549e+000 ns 
+  Calculation time for excitation:  	12     	s
+  Number of calculated pulse widths:	2.51661 
+  Steady state accuracy limit:      	-30	dB 
+  Simulated number of time steps:   	3741   
+  Maximum number of time steps:     	29730  
+  Time step width:
+       without subcycles:           	2.391186e-003 ns
+       used:                        	2.391186e-003 ns
+
+  Matrix calculation time:          	6      	s
+  Solver setup time:                	1      	s
+  Solver loop time:                 	28     	s
+  Solver post processing time:      	1      	s
+                                    	------------
+  Total time:                       	36     	s
+
+--------------------------------------------------------------------------------
+  Total simulation time:            	36     	s
+
+--------------------------------------------------------------------------------
+Adaptation results were found. Adaptive port meshing skipped.
+
+--------------------------------------------------------------------------------
+
+Build version: 2011.0 Release from 2011-01-14 (change 155209)
+Solver module: Time Domain: S-Parameter (Win 64)
+
+
+--------------------------------------------------------------------------------
+======================================================================
+ Solver cycle: 1
+======================================================================
+
+Stimulation at port 1 (mode 1) 
+
+
+--------------------------------------------------------------------------------
+Units settings: 
+
+  Dimensions: mm
+  Frequency:  GHz
+  Time:       ns
+
+--------------------------------------------------------------------------------
+Boundary conditions: 
+
+  YZsymmetry: none
+  XZsymmetry: none
+  XYsymmetry: none
+
+  Xmin: expanded open
+  Xmax: expanded open
+
+  Ymin: expanded open
+  Ymax: expanded open
+
+  Zmin: expanded open
+  Zmax: expanded open
+
+  PML-Type: Convolution PML
+
+--------------------------------------------------------------------------------
+Frequency settings: 
+
+  Fmin:    1.4
+  Fmax:    3.4
+  Nfsteps: 1001
+
+--------------------------------------------------------------------------------
+Waveguide boundaries:
+
+Port: 1
+
+Reloaded mode(s) for port 1.
+
+--------------------------------------------------------------------------------
+Field update statistics:
+
+  Number of components in total: 	334193
+  Number of lossy metal components:	7163
+
+Subcycling state:      Automatically deactivated
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Steady state energy criterion met, solver stopped.
+
+--------------------------------------------------------------------------------
+
+  ----------------------------------------------------------------------------
+                      Peak memory used (kB)         Free physical memory (kB) 
+                      Physical     Virtual          At begin     Minimum      
+  ----------------------------------------------------------------------------
+  Matrices calc.      47052        163440           999988       989492       
+  Solver run total    43584        180916           1019348      988156       
+  ----------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Solver Statistics:
+
+  Computer name:                   	DAVITO 
+       GPU info:                  	GPU computing not activated
+       Number of threads used:      	2 
+
+  Number of mesh cells:             	53159 
+  Excitation duration:              	3.554549e+000 ns 
+  Calculation time for excitation:  	11     	s
+  Number of calculated pulse widths:	2.51661 
+  Steady state accuracy limit:      	-30	dB 
+  Simulated number of time steps:   	3741   
+  Maximum number of time steps:     	29730  
+  Time step width:
+       without subcycles:           	2.391186e-003 ns
+       used:                        	2.391186e-003 ns
+
+  Matrix calculation time:          	0      	s
+  Solver setup time:                	1      	s
+  Solver loop time:                 	27     	s
+  Solver post processing time:      	1      	s
+                                    	------------
+  Total time:                       	29     	s
+
+--------------------------------------------------------------------------------
+  Total simulation time:            	29     	s
+
+--------------------------------------------------------------------------------
+Adaptation results were found. Adaptive port meshing skipped.
+
+--------------------------------------------------------------------------------
+
+Build version: 2011.0 Release from 2011-01-14 (change 155209)
+Solver module: Time Domain: S-Parameter (Win 64)
+
+
+--------------------------------------------------------------------------------
+======================================================================
+ Solver cycle: 1
+======================================================================
+
+Stimulation at port 1 (mode 1) 
+
+
+--------------------------------------------------------------------------------
+Units settings: 
+
+  Dimensions: mm
+  Frequency:  GHz
+  Time:       ns
+
+--------------------------------------------------------------------------------
+Boundary conditions: 
+
+  YZsymmetry: none
+  XZsymmetry: none
+  XYsymmetry: none
+
+  Xmin: expanded open
+  Xmax: expanded open
+
+  Ymin: expanded open
+  Ymax: expanded open
+
+  Zmin: expanded open
+  Zmax: expanded open
+
+  PML-Type: Convolution PML
+
+--------------------------------------------------------------------------------
+Frequency settings: 
+
+  Fmin:    1.4
+  Fmax:    3.4
+  Nfsteps: 1001
+
+--------------------------------------------------------------------------------
+Waveguide boundaries:
+
+Port: 1
+
+Reloaded mode(s) for port 1.
+
+--------------------------------------------------------------------------------
+Field update statistics:
+
+  Number of components in total: 	334193
+  Number of lossy metal components:	7163
+
+Subcycling state:      Automatically deactivated
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Steady state energy criterion met, solver stopped.
+
+--------------------------------------------------------------------------------
+
+  ----------------------------------------------------------------------------
+                      Peak memory used (kB)         Free physical memory (kB) 
+                      Physical     Virtual          At begin     Minimum      
+  ----------------------------------------------------------------------------
+  Matrices calc.      47052        163440           999988       989492       
+  Solver run total    53416        197876           1013476      968076       
+  ----------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Solver Statistics:
+
+  Computer name:                   	DAVITO 
+       GPU info:                  	GPU computing not activated
+       Number of threads used:      	2 
+
+  Number of mesh cells:             	53159 
+  Excitation duration:              	3.554549e+000 ns 
+  Calculation time for excitation:  	11     	s
+  Number of calculated pulse widths:	2.51661 
+  Steady state accuracy limit:      	-30	dB 
+  Simulated number of time steps:   	3741   
+  Maximum number of time steps:     	29730  
+  Time step width:
+       without subcycles:           	2.391186e-003 ns
+       used:                        	2.391186e-003 ns
+
+  Matrix calculation time:          	0      	s
+  Solver setup time:                	1      	s
+  Solver loop time:                 	27     	s
+  Solver post processing time:      	2      	s
+                                    	------------
+  Total time:                       	30     	s
+
+--------------------------------------------------------------------------------
+  Total simulation time:            	30     	s
+
+--------------------------------------------------------------------------------
