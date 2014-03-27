@@ -1,0 +1,2 @@
+/usr/bin/ar cr libutils.a  CMakeFiles/utils.dir/utils.cpp.o CMakeFiles/utils.dir/LinkExternalBitcode.cpp.o CMakeFiles/utils.dir/GetRootPath.cpp.o
+/usr/bin/ranlib libutils.a

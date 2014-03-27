@@ -1,0 +1,2 @@
+/usr/bin/ar cr libsimple.a  CMakeFiles/simple.dir/SimpleWriter.cpp.o CMakeFiles/simple.dir/SimpleBackendNameAllUsedStructsAndMergeFunctions.cpp.o CMakeFiles/simple.dir/SimpleBackendTargetInfo.cpp.o CMakeFiles/simple.dir/SimpleTargetMachine.cpp.o CMakeFiles/simple.dir/SimpleBackend.cpp.o
+/usr/bin/ranlib libsimple.a

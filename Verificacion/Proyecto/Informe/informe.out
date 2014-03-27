@@ -1,0 +1,8 @@
+\BOOKMARK [1][-]{section.1}{Que es PinaVM}{}
+\BOOKMARK [2][-]{subsection.1.1}{Descarga de PinaVM}{section.1}
+\BOOKMARK [1][-]{section.2}{Instalaci\363n de Requerimientos}{}
+\BOOKMARK [2][-]{subsection.2.1}{GCC}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Cmake}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{LLVM}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Clang}{section.2}
+\BOOKMARK [1][-]{section.3}{Instalaci\363n de PinaVM}{}

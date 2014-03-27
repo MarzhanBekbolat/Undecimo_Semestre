@@ -1,0 +1,79 @@
+Universidad Nacional de Colombia
+
+Práctica 2. Verificación de sistemas digitales.
+Profesor: Jose Alejandro Duque Rueda
+Estudiantes: David Ricardo Martinez Hernandez
+			 Sergio Andrés Zapata Palomino
+
+En esta práctica se hace uso de un archivo .csv, el cual va a contener
+las entradas A y B del sistema implementado en la práctica 1. A continuación
+se describe la funcionalidad de cada módulo. 
+
+stim.h
+Este archivo hace el proceso de obtención de los datos a partir del .csv,
+estos datos son de tipo string y mediante la función atoi se convierten a
+enteros y se almacenan en las variables A y B para posteriormente ser tomados
+por la ALU.
+
+adder.h
+Realiza las operaciones de suma y resta de las variables A y BB. En caso de que 
+la resta de un número negativo el carry out tendrá un valor de uno, al igual que 
+cuando hay un desborde en la suma de las dos variables. Ya que la varible BB 
+viene negada, es necesario realizar el complemento a 10 de esta variable para
+poder obtener los resultados esperados.
+
+in.csv
+Es el archivo del cual se toman las entradas del programa. Posee 2 columnas y 50 
+filas.
+
+andp.h
+Este archivo se encarga de realizar la operación AND cifra a cifra de las variables
+de entrada.
+
+orp.h
+Se encarga de realizar la operación OR cifra a cifra de las variables de entrada.
+
+output.h
+Este archivo se encarga de generar el archivo .csv el cual va a contener las salidas
+para cada una de las entradas de in.csv. Mediante la función outFile se hace el 
+proceso de escritura en el archivo output.csv
+
+mux1.h
+Este archivo corresponde al primer multiplexor, el cual define si la entrada B va a 
+estar negada o no.
+
+mux2.h
+Es el multiplexor encargado de escoger la operación que se va a realizar en la ALU.
+Dependiendo del valor de la función de control F, la cual se define en el stim.h se 
+realizará una u otra operación.
+
+main.cpp
+Es el archivo principal donde se instancian los demás archivos, en éste se asignan 
+los nombres de los valores de entrada y salida que va a tener el programa. También se 
+asignan los nombres para realizar el testbench con el cual se probará el programa.
+
+csvpararesta.png
+En esta figura se muestran los primeros valores para la resta, se puede ver que cuando 
+el valor de B en mayor que el de A entonce el carry out toma el valor de 1 indicando
+que el valor del resultado es un numero negativo.
+
+csvsumas.png
+En esta figura se muestran los primeros valores para la suma, se puede ver que cuando 
+la suma da un valor mayor de 256 el resultado será 0 y el carry out tomará el valor de
+1 indicando que hubo un desbordamiento en la operación.
+
+outand.csv
+Archivo csv para la operación AND. Esta operación se realiza bit a bit y se muestra en
+formato decimal.
+
+outor.csv
+Archivo csv para la operación OR. Esta operación se realiza bit a bit y se muestra en 
+formato decimal.
+
+outresta.csv
+Archivo csv para el caso de la resta. 
+
+outsuma.csv
+Archivo csv para el caso de la suma.
+
+

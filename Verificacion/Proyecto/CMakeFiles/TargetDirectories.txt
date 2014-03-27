@@ -1,0 +1,10 @@
+/home/davito/Documents/Verificacion/Proyecto/frontend/CMakeFiles/frontend.dir
+/home/davito/Documents/Verificacion/Proyecto/toplevel/CMakeFiles/pinavm.dir
+/home/davito/Documents/Verificacion/Proyecto/backends/PromelaBackend/CMakeFiles/promela.dir
+/home/davito/Documents/Verificacion/Proyecto/backends/42Backend/CMakeFiles/quarantedeux.dir
+/home/davito/Documents/Verificacion/Proyecto/backends/SimpleBackend/CMakeFiles/simple.dir
+/home/davito/Documents/Verificacion/Proyecto/CMakeFiles/systemc_lib.dir
+/home/davito/Documents/Verificacion/Proyecto/external/basic/CMakeFiles/tlm-basic.dir
+/home/davito/Documents/Verificacion/Proyecto/backends/TwetoBackend/CMakeFiles/tweto.dir
+/home/davito/Documents/Verificacion/Proyecto/backends/TwetoBackend/CMakeFiles/tweto_call_method.dir
+/home/davito/Documents/Verificacion/Proyecto/utils/CMakeFiles/utils.dir

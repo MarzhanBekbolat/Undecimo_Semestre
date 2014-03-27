@@ -1,0 +1,111 @@
+
+
+This file introduces PinaVM about the required software and how to build.
+
+________________________________________________________________________
+    Requirements
+________________________________________________________________________
+
+
+ -- GCC (http://gcc.gnu.org/)
+   _____________________________________________________________________
+    Gcc is a open-source compiler, You need gcc to compile PinaVM.
+    Make sure your gcc version isn't listed here:
+    http://llvm.org/docs/GettingStarted.html#brokengcc
+
+
+
+ -- CMake (http://www.cmake.org/)
+   _____________________________________________________________________
+    Cmake is a cross-platform open-source build system.
+    PinaVM requires cmake version newer than 2.8.8.
+
+
+
+ -- LLVM (http://llvm.org/)
+   _____________________________________________________________________
+    LLVM is a collection of compiler libraries. The source code of
+    PinaVM relies on LLVM.
+    
+    PinaVM only accepts llvm version 3.2.
+    
+    The easiest way to install LLVM is via package manager. You can
+    try to find the package named "llvm-3.2" and install it. If there
+    is no llvm-3.2 in your distribution release. Downloading source from
+    llvm.org and build it is another way. If you are lazy to install,
+    PinaVM can automatically download, build and install LLVM for you.
+
+    Autoinstall script of PinaVM is executed while configuration. With
+    -DAUTOINSTALL=TRUE, PinaVM will install both LLVM and Clang for you
+    if finds no LLVM in your system.
+
+
+
+
+ -- Clang (http://clang.llvm.org/) 
+   _____________________________________________________________________
+    Clang is a C/C++ compiler based on LLVM.
+    PinaVM needs a compiler which can generate llvm assembly, so
+    that PinaVM can JIT the generated assembly to collect information
+    of systemc.
+   
+    Pianvm only accepts clang version 3.2.
+
+
+________________________________________________________________________
+    Replacement of Clang
+________________________________________________________________________
+
+ -- DragonEgg (http://dragonegg.llvm.org/)
+   _____________________________________________________________________
+    Dragonegg is a gcc plugin which generate llvm assembly from AST of
+    gcc. dragonegg is a replacement of clang. Compilation of dragonegg
+    is harder than clang, so there is no autoinstall script to help.
+   
+    Pianvm only accepts dragonegg version 3.2.
+
+
+
+
+________________________________________________________________________
+    Build PinaVM
+________________________________________________________________________
+
+Building PinaVM is easy if you have experience using cmake, just follow
+those commands.
+
+  cd /where/you/want/to/build
+  cmake /where/your/pinavm/source <Options>
+  make
+
+
+________________________________________________________________________
+    Options for CMake
+________________________________________________________________________
+
+-DLLVM_ROOT=/where/llvm/should/be
+  This option denotes your llvm installation or the position you want
+  to install llvm via autoinstall.
+
+-DAUTOINSTALL=TRUE
+  This option denotes whether cmake automatically install llvm for
+  you, by default it is false. You can also set -DLLVM_ROOT=/where/llvm
+  to specify the path where llvm will be installed to. llvm is installed
+  to ./lib/llvm-3.2 if LLVM_ROOT is blank.
+
+-DDRAGONEGG_GCC=g++-4.x
+  Dragonegg is a gcc plugin, so cmake script must know you gcc version
+  corresponding to your dragonegg. If you set this option, cmake script
+  will finding the g++ and dragonegg. if finds nothing. clang will
+  substitute dragonegg and g++.  
+
+-DCMAKE_BUILD_TYPE=None,Debug,Release
+  Users can choose build type by assigning this parameter.  By default
+  it is None. The debug level is set to -g3 if Debug is chosen.
+
+-DTEST_CMAKE=TRUE
+  CAUTION : You should not use it unless you know what cmake script
+  actually doing. Only used when users testing cmake scripts. With this
+  option, CMake downloads llvm from local space instead of llvm.org
+  and shows llvm configurations.
+

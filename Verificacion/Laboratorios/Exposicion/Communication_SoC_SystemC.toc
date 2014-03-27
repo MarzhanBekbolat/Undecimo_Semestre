@@ -1,0 +1,17 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {spanish}
+\beamer@sectionintoc {1}{Introducci\IeC {\'o}n}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{SystemC-AMS}{3}{0}{1}
+\beamer@sectionintoc {2}{Protocolo I$^2$C}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Transmisi\IeC {\'o}n}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Validaci\IeC {\'o}n}{5}{0}{2}
+\beamer@subsectionintoc {2}{3}{Comunicaci\IeC {\'o}n Multimaster}{6}{0}{2}
+\beamer@sectionintoc {3}{Controlador para la arquitectura del bus I$^2$C}{7}{0}{3}
+\beamer@subsectionintoc {3}{1}{Arquitectura General y Lenguaje de Modelamiento}{7}{0}{3}
+\beamer@subsectionintoc {3}{2}{Arquitectura Digital de Bloques}{8}{0}{3}
+\beamer@subsectionintoc {3}{3}{Bloques Anal\IeC {\'o}gicos}{9}{0}{3}
+\beamer@sectionintoc {4}{Simulaci\IeC {\'o}n del Controlador I$^2$C}{10}{0}{4}
+\beamer@subsectionintoc {4}{1}{Simulaci\IeC {\'o}n de un Micro-Controlador del Nodo}{10}{0}{4}
+\beamer@subsectionintoc {4}{2}{Simulaci\IeC {\'o}n de una SoC del Nodo}{11}{0}{4}
+\beamer@subsectionintoc {4}{3}{Simulaci\IeC {\'o}n Rendimiento}{12}{0}{4}
+\beamer@sectionintoc {5}{Bibliograf\IeC {\'\i }a}{13}{0}{5}

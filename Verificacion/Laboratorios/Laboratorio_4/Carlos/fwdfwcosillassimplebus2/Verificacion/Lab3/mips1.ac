@@ -1,0 +1,18 @@
+AC_ARCH(mips1){
+
+  ac_wordsize 32;
+  ac_mem MEM_INST:256K;
+  ac_mem MEM_DATA:256K; 	
+  
+  ac_regbank RB:32;
+  ac_reg npc;
+  ac_reg hi;
+  ac_reg lo;
+  ARCH_CTOR(mips1) {
+
+    ac_isa("mips1_isa.ac");
+    set_endian("big");
+
+  };
+};
+

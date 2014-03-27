@@ -1,0 +1,2 @@
+/usr/bin/ar cr libquarantedeux.a  CMakeFiles/quarantedeux.dir/42AutomatonContract.cpp.o CMakeFiles/quarantedeux.dir/42Writer.cpp.o CMakeFiles/quarantedeux.dir/42BackendTargetInfo.cpp.o CMakeFiles/quarantedeux.dir/42BackendNameAllUsedStructsAndMergeFunctions.cpp.o CMakeFiles/quarantedeux.dir/42TargetMachine.cpp.o CMakeFiles/quarantedeux.dir/42Backend.cpp.o
+/usr/bin/ranlib libquarantedeux.a

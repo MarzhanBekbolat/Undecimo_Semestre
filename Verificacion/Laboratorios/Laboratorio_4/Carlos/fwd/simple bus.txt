@@ -1,0 +1,889 @@
+ 
+Este documento contiene las siguientes secciones:
+ 
+1.    Introduccion : el modelo del bus
+1.1   ..  interfaz del Bus
+1.1.1 .... Interfaz Blocking 
+1.1.2 .... Interfaz Non-Blocking 
+1.1.3 .... Interfaz Direct 
+1.2   ..Interfaz del esclavo
+1.3   .. Arbitro
+1.4   .. tiempo de ejecucion
+1.4.1 ....solicitud Blocking 
+1.4.2 ....solicitud Non-Blocking 
+1.4.3 ....solicitud Direct 
+1.5   .. Interfaces Usadas
+1.5.1 .... Bus
+1.5.2 .... Arbitro
+
+2.    The Testbench
+2.1   .. esclavos
+2.1.1 .... esclavos de memoria rapida
+2.1.2 .... esclavos de memoria lenta
+2.2   .. Maestros
+2.2.1 .... Maestros Non-Blocking
+2.2.2 .... Maestros Blocking 
+2.2.3 .... Maestros Direct 
+2.3   .. El Test 'Schematico'
+2.3.1 .... Construccion
+2.3.2 .... Simulacion
+2.4   .. Comportamoento en tiempo de ejecucion
+2.4.1 .... Maestro Direct Master
+2.4.2 .... Maestro Non-Blocking Master
+2.4.3 .... Maestro Blocking Master
+2.5   .. ejecutando
+3.    Archivos
+
+
+1. Introduccion : 
+
+El modelo del bus 
+
+Esta es la descripción sencilla de un modelo de simple bús.El modelado se
+realiza a nivel de transacción (TLM), y se reañliza con ciclos sincronizados.
+
+los ciclos sincronizados dan precisión y una alta velocidad de simulación. 
+El objetivo es modelar la organización y el movimiento de datos en un sistema
+basado en un reloj, en comparación con el sistema real equivalente.
+Los eventos Sub-ciclo no son de interés.
+
+Modelado de la transaccion: La comunicación entre los componentes es
+descrita como llamadas de funciones. Los eventos o secuencias de eventos
+en un grupo de cables/señales están representados por un conjunto de
+llamadas de funciones en una interfaz de software abstracto. El modelado
+de las interfaces acelera el proceso de construcción de modelos.
+
+Este diseño se utiliza una forma global de sincronización, cuando los
+módulos estas conectados al bus se ejecutan en el flanco de subida del reloj,
+y el bus se ejecuta en un flanco de bajada. Esta es una técnica de modelado
+para lograr un rendimiento muy alto para la simulación de modelos abstractos de bus,
+no implica que la aplicación real de este diseño debe utilizar un bus que sea
+sensible al flanco de bajada. La implementacion final puede, de hecho,
+tener un solo reloj con toda la lógica de sensibilidad al flanco de subida.
+
+1.1 interfaz del bus
+
+La interfaz de bus describe la comunicación entre maestros y el bus.
+El bus se puede conectar a varios maestros. Cada maestro se identifica
+por una prioridad única, que es representada por un numero entero sin signo.
+Cuando el maestro tiene el menor  numero entero sin signo es el maestro màs
+importante. Cada función de interfaz del bus utiliza esta prioridad para establecer
+la importancia de la llamado. Hay tres conjuntos de funciones de comunicación 
+(interfaces)  definido entre los maestros y el bus: blocking, non-blocking y direct. 
+
+Un maestro puede reservar el bus para una proxima solicitud por el uso de
+una bandera lock(bloqueo). Si esta esta bandeara es esablecida y la
+solicitud es aceptada en un momento dado del ciclo, entonces el bus sera
+bloqueado por el mismo maestro en el siguiente ciclo,si este maestro utiliza otra solicitud.
+
+
+1.1.1interfaz  Blocking 
+ 
+Las siguientes funciones de interfaces bloking mueven los datos
+a través del bus en modo rafaga, y son definidos asi:
+
+simple_bus_status burst_read(unsigned int unique_priority,
+	 		     int *data,
+			     unsigned int start_address,
+			     unsigned int length = 1,
+	 		     bool lock = false);
+
+simple_bus_status burst_write(unsigned int unique_priority,
+	 		      int *data,
+			      unsigned int start_address,
+			      unsigned int length = 1,
+	 		      bool lock = false);
+
+Estas funciones leen o escriben un bloque  de datos (en palabras) de maximo 32 bits,
+apuntando la longitud de los datos (en palabras) desde el  start_address. 
+Usamos direcciones en bytes,cada direccioen de palabra es multiplo de 4.
+El valor de la unica prioridad especifica la importancia del maestro asi como la 
+identificacion del mismo. Si el bloqueo (lock) es establecido, ahabran 2 efectos separados:
+
+1) La funcion reserva el bus para uso exclusivo de una solicitud siguiente
+ del mismo maestro. Este solicitud debe seguir inmediatamente despues de que
+ las rafagas de solicitudes anteriores sean completadas.
+
+2) La funcion no puede ser interrumpidas por una solicitud con una prioridad mas alta.
+
+Despues de completar la tranferencia el bus retorna un simple_bus_status que puede ser:
+
+- SIMPLE_BUS_OK    : transferencia satisfactoria (OK).
+- SIMPLE_BUS_ERROR : Un error ocurrido durante la transferencia. No todos los datos pueden ser leidos/escritos
+
+Ejemplos de condiciones que podrían resultar en SIMPLE_BUS_ERROR:
+-direcciones o rangos de direcciones  ilegales
+-escribir a un esclavo de solo lectura.
+
+Note que una interrupcion de una transaccion no resulta en SIMPLE_BUS_ERROR.
+
+1.1.2 interfaz Non-Blocking 
+
+Las funciones de la interfaz non-blocking son definidas a continuación:
+
+void read(unsigned int unique_priority,
+	  int *data,
+	  unsigned int address,
+	  bool lock = false);
+
+void write(unsigned int unique_priority,
+	   int *data,
+	   unsigned int address,
+	   bool lock = false);
+
+simple_bus_status get_status(unsigned int unique_priority);
+
+Estas funciones de lectura o escritura de un simple dato(palabra), 
+apuntan a la direccion del dato. La solicitud se maneja de acuerdo 
+a la unica prioridad asignada. Si el bloqueo/lock se ejecuta, la funcion
+reserva el bus para uso exclusivo para una siguiente solicitud del mismo maestro.
+Esta solicitud debe seguir inmediatamente despues de completado la anterior rafaga
+de solicitudes.
+
+Las funciones retornan inmediatamente. El llamado debe tener en cuenta
+la revision del estado de la ultima solicitud, usando la funcion get_status().
+Esta funcion consulta al BUS por el estado de la ultima solicitud realizada.
+Aqui tambien la unica prioridad del maestro debe ser aprobada
+con el fin de obtener el estado apropiado de la solicitud.
+el estado de la solicitud es uno de estos:
+
+- SIMPLE_BUS_REQUEST : Ela solicitud es emitido y  es ubicada en la cola,
+                       esperando a ser atendida.
+- SIMPLE_BUS_WAIT    : la solicitud  se empieza a atender pero no esta completada todavía.
+- SIMPLE_BUS_OK      : La solicitud es  completada sin errores.
+- SIMPLE_BUS_ERROR   : Un error ocurrido durante el procesamiento de la solicitud.
+                       la solicitud es finalizada pero la transferencia no fue completada exitosamente.
+
+Un nueva solicitud del non-blocking puede ser realizado si el estado de la
+(ultima) solicitud es SIMPLE_BUS_OK o SIMPLE_BUS_ERROR. Inmediatamente 
+despues de que se genera la solicitud, el estado empieza en todos los casos
+en  SIMPLE_BUS_REQUEST. El estado solo puede cambiar cuando los procesos
+del bus lo soliciten. Cuando un nueva solicitud es emitida y las actuales
+no han sido completadas aun, se produce un mensaje de error y la ejecucion es abortada.
+
+1.1.3 interfaz Direct 
+
+Las funciones de interfaz directa son definidas a continuacion 
+y son los mismos para el interfaz de autobús y de esclavo:
+
+bool direct_read(int *data,
+                 unsigned int address);
+
+bool direct_write(int *data,
+	          unsigned int address);
+
+Las funciones de interfaz directa desempeñan la transferencia de datos
+a traves del bus, pero sin usar el protocolo del bus. Cuando la funcion
+es invocada, la transferencia toma lugar inmediatamente.El estado de retorno es: 
+
+- true  : La transferencia es exitosa.
+- false : La transferencia no fue exitosa. Una posible causa es que la
+          direccion dada no pueda ser mapeada sobre un esclavo, o la localización
+          de la memoria no puede ser leida o escrita.
+
+1.2 interfaz Slave
+
+La interfaz de esclavos describe la comunicacion entre el bus y los esclavos. 
+para que el bus pueda ser conectado con los esclavos. Cada esclavo modela
+algunas clases de memoria que pueden ser accedidas a traves de la interfaz de esclavo.
+
+La interfaz de esclavos es definida por dos conjuntos de funciones.
+El primer conjunto cumple las funciones por defecto de lectura y escritura
+de datos hacia y desde la memoria, mientras que el segundo conjunto de funciones
+describe la interfaz directa, por tal razon se ignora los posibles estados de espera
+de los esclavos.
+
+Las funciones modo-normal son definidas a continuacion:
+
+simple_bus_status read(int *data,
+		       unsigned int address);
+
+simple_bus_status write(int *data,
+			unsigned int address);
+
+Estas funciones de lectura y escritura de un elemto de datos unico, 
+apuntan el dato hacia o desde la memoria del esclavo a la direccion.
+Las funciones retornan instantaneamente y el llamado debe revisar 
+el estado de la transferencia  del valor retornado de las funciones.
+Si los estados retornados son SIMPLE_BUS_WAIT, el que llama debe
+llamar la funcion nuevamente hasta que los estados cambien.
+Los estados de las funciones de interfaz: 
+
+- SIMPLE_BUS_WAIT  : El esclavo emite un estado de espera.
+- SIMPLE_BUS_OK    : La transferencia es correcta.
+- SIMPLE_BUS_ERROR : ocurrio un error durante la transferencia. la 
+                     trnaferencia es finalizada pero no exitosa. 
+
+Si uno o mas modelos de esclavos estan en estado de espera, 
+el estado de la funcion de interfaz será SIMPLE_BUS_WAIT;
+en caso de un error el estado sera SIMPLE_BUS_ERROR y la transferencia es abortada.
+cada ciclo subsecuente de los estados debe ser revisado de nuevo
+hasta que el estado sea SIMPLE_BUS_OK.Solo entonces la transferencia
+es completada y el esclavo esta listo para aceptar una nueva solicitud .
+
+Para obtener el rango de memoria del esclavo se necesiotan dos funciones:
+
+unsigned int start_address() const;
+unsigned int end_address() const;
+
+La funcion start_address retorna la direccion de la ubicación de
+la primer memoria direccionada de el esclavo; la funcion end_address
+retorna la ultima ubicación memoria direccionada de el esclavo.
+
+En el ejemplo de simple bus estas funciones son usadas para realizar
+una revision para espacios de direccion solapados de los esclavos
+antes de que la simulacion empiece y determinar el esclavo apropiado
+para la direccion especificada de un bus solicitado.
+
+
+1.3 Arbitro
+
+Se puede conectar mas de un maestro al bus. cada maestro es independiente
+de los otros, entonces cada maestro puede emitir una solicitud del
+bus en cualquier momento. cuando en un ciclo determinado uno o mas solicitudes 
+son realizadas por el bus, estas solicitudes son almacenados y aprobadas
+en el arbitro.En este almacenamiento la solicitud mas conveniente
+es seleccionada; Los otras solicitudes se mantienen en SIMPLE_BUS_REQUEST.
+El arbitro es conectado al bus por una interfaz dedicada,y es llamado 
+con una o mas solicitudes: 
+
+simple_bus_solicitud *arbitrate(const simple_bus_solicitud_vec &Q);
+
+El arbitro selecciona la solicitud mas apropiada de acuerdo a las siguientes reglas:
+
+1. Si la solicitud actual  esta bloqueada (lock), entonces esta es siempre seleccionada, 
+aunque exista una rafaga de solicitudes ahí. 	
+2. Si la ultima solicitud tiene su bandera bloqueada (lock) y es de nuevo requerida
+ este solicitud es seleccionado de la coleccion Q y retornada.
+3. La solicitud con mayor prioridad (la de menor numero) es 
+seleccionada de la coleccion Q y retornada.
+
+El arbitro revisa si todas las prioridades de las solicitudes son unicas.
+Si este no es el caso el arbitro producira un mensaje de error y aborta la ejecucion. 
+
+El arbitro es llamado siempre y cuando el ultima solicitud del maestro sea completamente
+procesada por el bus, y cuando hay una o mas nuevas solicitudes hechas por el conjunto de maestros.
+
+NoTA: La prioridad mas alta es especificada por el valor mas bajo del parametro unique_priority.
+
+ 
+
+1.4 sincronizacion
+
+El bus es iniciado por una solicitud de un maestro. Cada maestro
+es sensible al flanco de subida de reloj donde puede llamar una funcion de interfaz de bus.
+
+
+1.4.1 solicitud Blocking 
+
+En el flanco de subida de reloj, los maestros pueden emitir una solicitud de bus.
+La funcion de interfaz de bus registra la solicitud en un formulario de solictudes.
+El estado de la solicitusd será SIMPLE_BUS_REQUEST. (La funcion de interfaz de bus no 
+es terminada pero espera, hasta el estado del bus sea SIMPLE_BUS_OK ó SIMPLE_BUS_ERROR,
+y este estado es retornado en el flanco de subida de reloj, despues la solicitud es completada.
+
+En el siguiente flanco de bajada despues de que la solicitud es emitida,
+el bus se encarga de esta. Desde que hay una (o mas)
+solicitudes hechas, el arbitro es llamado a determinar la solicitud
+mas conveniete. El estado de esta solicitud es establecido a 
+SIMPLE_BUS_WAIT.luego esta solicitud es ejecutada.
+
+Cada transferencia de datos a ser realizada,van desde 
+start_address hasta (star_address + longitud-1),esta direccion es obtenida
+ y el correspondiente esclavo es seleccionado. Si no se encuentra un esclavo,
+ el estado del request es establecido como SIMPLE_BUS_ERROR.
+
+La solicitud del maestro es transformado en una solicitud sencilla de esclavo,
+y una por una, estas solicitudes son hechas para el esclavo.
+Cuando el estado de el esclavo es SIMPLE_BUS_OK la llamada es hecha,
+luego la transferencia de simple datos es realizada, la direccion
+actual de la solicitud del maetsro es incrementada. Si la direccion actual
+esta fuera del ultimo dato a ser dirigido, el estado de la solicitud es establecido
+para SIMPLE_BUS_OK y el evento es notificado, para los cuales la funcion interfaz de 
+BUS que emitio la solicitud esta en espera.
+
+Si hay mas elementos de datos se envian a la interfaz esclavo,
+ el estado de la solicitud permanece SIMPLE_BUS_WAIT. En el siguiente
+ flanco de bajada del reloj el proceso del BUS continua con la transferencia
+ de datos al esclavo hasta que todos los datos de elementos se realicen.
+
+Si un esclavo encuentra un error, el estado de la solicitud se establece
+ en SIMPLE_BUS_ERROR y el evento es notificado,
+ para  los que la funcion de interfaz del BUS  emitio la solicitud esta a la espera.
+
+La funcion de interfaz de BUS no espera hasta que el estado de la llamada 
+se convierte en SIMPLE_BUS_OK o SIMPLE_BUS_ERROR pero espera por un evento
+que viene del proceso del BUS indicando que la transferencia se ha completado.
+Este evento se produce con un flanco de bajada del reloj. Una espera adicional 
+por el siguiente flanco de subida del reloj debe ser emitida para sincronizar:
+
+simple_bus_status burst_read(...) {
+  // register solicitud
+  ...
+  wait(solicitud->transfer_done);
+  wait(clock->posedge_event());
+  return get_status(priority);
+}
+
+1.4.2 solicitud Non-Blocking 
+
+Una solicitud por el maestro non-blocking se realiza en un flanco de subida del reloj.
+la solicitud es registrada por el BUS, llenando el formulario de las solicitudes
+y el estado de la solicitud se establece en SIMPLE_BUS_REQUEST.La funcion
+non-blockingn retorna. El estado de la solicitud cambia tan pronto como el
+ bus se encarga de la solicitud, y esto sucede en un flanco de bajada del reloj.
+
+Ahora el maestro debe revisar el estado de la solicitud hasta que el
+estado sea SIMPLE_BUS_OK o SIMPLE_BUS_ERROR. Sólo el proceso del BUS 
+puede cambiar el estado de la solicitud una vez que se esla se hace.
+Y eso sólo ocurre en un flanco de bajada. El mismo procedimiento se sigue
+ahora para la transferencia de un simple dato a través del bus tal
+como se describio para el maestro Bloking.
+
+
+1.4.3 solicitud Direct 
+
+Una solicitud de conexión directa de un maestro no sigue el protocolo de bus, 
+pero se maneja de forma instantánea. Una vez que la petición es emitida por un maestro, 
+es transformada directamente en la correspondiente llamada de la funcion interfaz directa
+del esclavo. La única acción realizada por el bus es la selección de los esclavos de acuerdo 
+con el argumento de dirección de la llamada de la función interfaz directa.
+
+En el esclavo esta solicitud directa también se procesa inmediatamente sin tnenr encuenta
+a los estados de espera de los esclavos. La función de retorno y su valor retornado 
+es verdadero si la dirección se puede leer y/o escritbir, sino es falso.
+
+El valor de retorno de la solicitud directa de la llamada función de interfaz de bus
+es el mismo que para la parte de la interfaz del esclavo, sólo cuando
+el parámetro de dirección no puede ser asignada a un esclavo, sino también devolverá falso.
+
+
+1.5 interfaces usadas
+
+class simple_bus_direct_if 
+   : virtual public sc_interface 
+   {...};
+
+class simple_bus_non_blocking_if 
+   : virtual public sc_interface 
+   {...};
+
+class simple_bus_blocking_if 
+   : virtual public sc_interface 
+   {...};
+
+class simple_bus_arbiter_if 
+   : virtual public sc_interface 
+   {...};
+
+class simple_bus_slave_if 
+   : public simple_bus_direct_if
+   {...};
+
+
+1.5.1 Bus
+
+El bús es un canal jerárquico, proporcionando las tres diferentes interfaces de BUS, y que contiene un puerto de reloj,
+un puerto de árbitro y uno (o varios) para conectar uno o más esclavos.
+
+class simple_bus
+   : public simple_bus_direct_if
+   , public simple_bus_non_blocking_if
+   , public_simple_bus_blocking_if
+   , public sc_module
+   {
+      sc_clk_in clock;
+      sc_port<simple_bus_slave_if, 0> slave_port;
+      sc_port<simple_bus_arbiter_if> arbiter_port;
+      ...
+   };
+
+La implementación del proceso principal del BUS es un proceso de método,
+usa sensibilidad dinámica de 'comunicación' con las funciones del interfaz del BUS.
+La comunicación hacia la interfaz de esclavo no hace uso de la sensibilidad dinámica.
+
+
+1.5.2 Arbiter
+
+El arbitro es un canal jerarquico que proporciona la interfaz simple_bus_arbiter_if..
+
+class simple_bus_arbiter
+   : public simple_bus_arbiter_if
+   , public sc_module
+   {...};
+
+
+
+
+
+
+2. El Testbench
+
+El test consiste en una instanciacion de un simple bus con una arbitro,
+cuatro maestros y dos esclavos. ambos modelos de esclavo tienen  una memoria de acceso
+alatorio, la primera memoria no tiene estados de espera y la segunda si. el testbench 
+contiene cuatro maestros, cada maestro remite solo una solicitud a una interfaz particular.
+solo  emiten  la funcion interfaz llamada blocking ,solo la funcion interfaz llamada non-blocking
+o solo la funcion interfaz llamada direct.
+
+2.1 esclavo
+
+Existen dos tipos de memorias modeladas: uno sin estados de espera 
+y una con un número configurable de estados de espera. 
+
+2.1.1 esclavo de memoria rapida
+
+El esclavo de memoria rápida no tiene estados de espera y no
+tiene puerto de reloj. Reacciona inmediatamente a la Solicitud de los buses
+y establece el estado en consecuencia 
+
+class simple_bus_fast_mem
+   : public simple_bus_slave_if
+   , public sc_module
+   {
+   public:
+      // no ports
+
+      // constructor
+      simple_bus_fast_mem(sc_module_name name,
+                          unsigned int start_address,
+                          unsigned int end_address) 
+      ...
+      // interface methods
+      ...
+   };
+
+start_address apunta al primer byte de la primera palabra en la memoria
+de este esclavo y es una palabra de dirección alineada, es decir, tiene que ser un múltiplo de 4.
+end_address apunta al último byte de la última palabra en el área de memoria de este esclavo,
+es decir, la dirección (* start_address + storage_size_in_words 4 a 1).
+
+2.1.2 esclavo de memoria lenta
+
+El esclavo memoria lenta tiene un número configurable de estados de espera
+(argumento del constructor), y contiene un puerto de reloj.Una vez que la
+Solicitud se hace, el estado se establece en SIMPLE_BUS_WAIT, un contador
+se establece. Cada flanco de bajada del reloj este contador se decrementa y comprueba,
+Una vez que este contador es cero, el estado se establece en SIMPLE_BUS_OK.
+Este estado es recogido por el bús en el siguiente flaco de bajada del reloj.
+
+class simple_bus_slow_mem
+   : public simple_bus_slave_if
+   , public sc_module
+   {
+   public:
+      sc_clk_in clock;
+
+      // constructor
+      simple_bus_slow_mem(sc_module_name name,
+                          unsigned int start_address,
+                          unsigned int end_address, 
+                          unsigned int nr_wait_states)
+      ...
+      // interface methods
+      ...
+   };
+
+
+start_address apunta al primer byte de la primera palabra en la memoria
+de este esclavo y es una palabra de dirección alineada, es decir, tiene que ser un múltiplo de 4.
+end_address apínta al último byte de la última palabra en el área de memoria de este esclavo,
+es decir, la dirección (* start_address + storage_size_in_words 4 a 1).
+
+2.2 Maestros
+
+Para el test se definen cuatro maestros, cada uno con una interfaz de bus.
+El main_action de cada maestro es un proceso de hilo.
+
+2.2.1 Non-Blocking Masters
+
+SC_MODULE(simple_bus_master_non_blocking)
+   {
+     // ports
+     sc_clk_in clock;
+     sc_port<simple_bus_non_blocking_if> bus_port;
+
+     // constructor
+     simple_bus_master_non_blocking(sc_module_name name,
+                                    unsigned int unique_priority,
+                                    ...)
+     ...
+   };
+
+En este ejemplo, el maestro non-blocking lee de los datos de algun lugar de memoria,
+realiza una operación aritmética de estos datos y escribe
+de nuevo a la memoria. Esto sucede en un bucle para que los lugares de memoria
+por lo menos cambien cada iteración del bucle
+
+
+
+2.2.2 Blocking Masters
+
+SC_MODULE(simple_bus_master_blocking)
+   {
+     // ports
+     sc_clk_in clock;
+     sc_port<simple_bus_blocking_if> bus_port;
+
+     // constructor
+     simple_bus_master_blocking(sc_module_name name, 
+                                unsigned int unique_priority,
+                                ...)
+     ...
+   };
+
+Aquí el maestro de bloqueo lee un bloque de datos, realiza la misma
+operaciones aritméticas en los datos que el maestro de no-bloqueo, y
+escribe de nuevo a la memoria como un bloque. Este maestro tiene una menor
+prioridad que el maestro non-blocking, para habilitar interrupciones con las solicitudes
+de mayor prioridad durante una transacción de modo ráfaga.
+
+
+2.2.3 Direct Masters
+
+SC_MODULE(simple_bus_master_direct)
+   {
+     // ports
+     sc_clk_in clock;
+     sc_port<simple_bus_direct_if> bus_port;
+
+     // constructor
+     simple_bus_master_direct(sc_module_name name,
+                              ...)
+     ...
+   };
+
+
+El maestro directo monitorea algunos lugares de la memoria a intervalos de tiempo distintos
+y los imprime en la pantalla.
+---------------------------------------------------------------------------
+
+      +---------+   +---------+   +---------+  +---------+  +---------+  
+      | master  |   | master  |   | master  |  | master  |  | master  |
+  +-->|   #B1   |-->|   #B2   |-->|  #NB1   |->|   #NB2  |->|   #5    |
+  |   +-- [*]---+   +---[*]---+   +---[*]---+  +---[*]---+  +---[*]---+
+  |        |             |             |            |            |
+  |        +-------------+-------------+------------+------------+
+  |                      |                          
+  |      /--------------(.)--------------\
+  +->[*]/        simple_bus               \          +----------+
+  |     \                                 /[*]----(.)| arbiter  |
+  |      \--------------[*]--------------/           +----------+
+  |                     | |                
+  |                 ____/ \____
+clock              /           \
+  |                |           |
+  |            +--(.)--+   +--(.)--+         legend:
+  |            | slave |   | slave |         [*] : puerto
+  +----------->|  #1   |   |  #2   |         (.) : interfaz
+               +-------+   +-------+
+
+  Figure 1: el simple_bus con cinco maestros, dos esclavos y un arbitro.
+---------------------------------------------------------------------------
+
+2.3 El esquematico del test
+
+El testbench contiene un bus con arbitro,cuatro maestros
+cada uno soportando un interfaz de autobús específica, y dos modelos
+esclavos de una memoria sin estados de espera (memoria de alta velocidad),
+y una memoria con los estados de espera (memoria lenta). El modulo test
+está disponible como el modulo jerárquico.
+
+2.3.1 Construccion
+
+The testbench contiene canal del reloj 'C1' y las direntes instancias.
+estas instancias estan localizadas en el constructor de test y estas pueden ser
+configuradas.El argumento por defecto es el nombre del módulo,sólo para los maestros,
+los parametros esclavos deben ser especificados.
+
+la memoria cubre el rango de direcciones [0:ff] donde la primera mitad
+de direeciones ([0:7f])es cubierta por la memoria rapida,y la segunda mitad de
+([0x80:0xff]) es cubierta por la memoria lenta con un estado de espera:
+
+- simple_bus_fast_mem("mem_fast", // nombre
+		      0x00,       // direccion inicial
+                      0x7f);      // direccion final 
+- simple_bus_slow_mem("mem_slow", // nombre
+                      0x80,       // direccion inicial
+                      0xff,       // direccion final
+                      1);         // numeros de estados de espera
+
+Para los maestros, la unica prioridad es definida duarnte el tiempo de construccion,
+excepto para el maestro directo, la prioridad no es diractamente 
+revisada durante la construccion, solo durante el tiempo ejecucion por el arbitro.
+si duarnte el mismo ciclo, dos o mas solicitudes son emitidas con las
+misma prioridad se aborta la simulacion con un mensaje de error.
+
+
+- simple_bus_master_blocking("master_b", 4, ...);      // unique_priority = 4
+- simple_bus_master_non_blocking("master_nb", 3, ...); // unique_priority = 3
+
+-master_b1 = new simple_bus_master_blocking("master_b1", 3, 0x56, false, 300);
+-master_nb = new simple_bus_master_non_blocking("master_nb", 2, 0x38, false, 20);/
+-master_nb1 = new simple_bus_master_non_blocking("master_nb1", 1, 0x42, false, 20);
+
+2.3.2 Simulacion
+
+la intancia del  simple_bus_test es inicializada en la rutina sc_main
+y la simulacion es iniciada por sc_start(10000).
+
+esto se encuentra en el archivo simple_bus_main.cpp. 
+
+2.4 comportamiento en tiempo de ejecucion
+
+Los cuatro difrentes maestros emiten solicitudes de manera independiente,
+una solicitud simple, pero tambien se pueden hacer multiples peticiones 
+por ciclo,Cada maestro tiene su propio comportamiento. 
+
+2.4.1 Maestro directo
+
+el maestro directo sirve como un monitor que lee en ciertos intervalos
+de tiempo cuatro posiciones de memoria adyacentes e imprime la secuencia
+de salida, usando la interfaz de bus directo.
+.
+
+con m_address = 0x78, and m_timeout = 100, El maestro directo hace:
+
+  while (true)
+    {
+      bus_port->direct_read(&mydata[0], m_address);
+      bus_port->direct_read(&mydata[1], m_address+4);
+      bus_port->direct_read(&mydata[2], m_address+8);
+      bus_port->direct_read(&mydata[3], m_address+12);
+
+      if (m_verbose)
+	sb_fprintf(stdout, "%f %s : mem[%x:%x] = (%x, %x, %x, %x)\n",
+		   sc_time_stamp(), name(), m_address, m_address+15, 
+		   mydata[0], mydata[1], mydata[2], mydata[3]);
+
+      wait(m_timeout, SC_NS);
+    }
+
+los parametros m_address y m_timeout son configurables por medio
+de los argumentos del constructor.imprime la posicion en memoria
+cuando m_verbose esta activada tambien puede ser configurado
+en los argumentos del constructor.
+
+2.4.2maestro Non-Blocking  (leer y escribir datos)
+
+El maestro non-blocking lee una palabra 'data' desde la memoria,
+usando la funcion interfaz non-blocking del bus y comprueba si la
+operacion fue satisfactoria,'data' es modificada un poco
+y luego lo escribie en la misma direccion en memoria 'addr. despues de  'm_timeout'
+la siguiente iteracion empieza. cada iteracion, 'addr' es activada en
+la siguiente direccion de palabra.
+
+con addr = 0x38, y m_timeout = 20, the non-blocking master hace: 
+
+  wait(); // ... para el siguiente flanco de subida del reloj
+  while (true)
+    {
+      bus_port->read(m_unique_priority, &mydata, addr, m_lock);
+      while ((bus_port->get_status(m_unique_priority) != SIMPLE_BUS_OK) &&
+	     (bus_port->get_status(m_unique_priority) != SIMPLE_BUS_ERROR))
+	wait();
+      if (bus_port->get_status(m_unique_priority) == SIMPLE_BUS_ERROR)
+	sb_fprintf(stdout, "%f %s : ERROR cannot read from %x\n",
+		   sc_time_stamp(), name(), addr);
+
+      mydata += cnt;
+      cnt++;
+
+      bus_port->write(m_unique_priority, &mydata, addr, m_lock);
+      while ((bus_port->get_status(m_unique_priority) != SIMPLE_BUS_OK) &&
+	     (bus_port->get_status(m_unique_priority) != SIMPLE_BUS_ERROR))
+	wait();
+      if (bus_port->get_status(m_unique_priority) == SIMPLE_BUS_ERROR)
+	sb_fprintf(stdout, "%f %s : ERROR cannot write to %x\n",
+		   sc_time_stamp(), name(), addr);
+ 
+      wait(m_timeout, SC_NS);
+      wait(); // ... for the next rising clock edge
+
+      addr+=4; // next word (byte addressing)
+      if (addr > (m_start_address+0x80)) {
+	addr = m_start_address; cnt = 0; 
+      }
+    }
+
+inicialmente, todas las funciones de llamadas a las interfaces del bus
+no estan bloqueadas (lock). el bloqueo(lock) se pude configurar por
+el argumento del constructor.
+
+2.4.3 maestro Blocking
+
+El maestro Bocking lee un bloque de "data" palabras por byte 'addr',y la
+longitud de la palabra 0x10 desde memoria  , realiza algunas operaciones
+aritmeticas con estos, que tienen 0x10 estados de espera, y escribe el bolque 
+de 'data'de nuevo a la memoria en 'addr'.Luego se define 'm_timeout'(ns) antes de 
+que empiece la siguiente iteracion.
+
+con m_address = 0x4c y m_timeout = 300, El maestro bloking realiza:
+
+  while (true)
+    {
+      wait(); // ... para el siguiente flanco de subida del reloj
+      status = bus_port->burst_read(m_unique_priority, mydata, 
+				    m_address, mylength, m_lock);
+      if (status == SIMPLE_BUS_ERROR)
+	sb_fprintf(stdout, "%f %s : blocking-read failed at address %x\n",
+		   sc_time_stamp(), name(), m_address);
+
+      for (i = 0; i < mylength; ++i)
+	{
+	  mydata[i] += i;
+	  wait();
+	}
+
+      status = bus_port->burst_write(m_unique_priority, mydata, 
+				     m_address, mylength, m_lock);
+      if (status == SIMPLE_BUS_ERROR)
+	sb_fprintf(stdout, "%f %s : blocking-write failed at address %x\n", 
+		   sc_time_stamp(), name(), m_address);
+
+      wait(m_timeout, SC_NS);
+    }
+.
+inicialmente, todas las funciones de llamadas a las interfaces del bus
+no estasn bloqueadas (lock). el bloqueo(lock) se pude configurar por
+el argumento del constructor.
+
+2.5 Ejecutando
+
+El comportamiento en tiempo de ejcucion es monitorearlo por inspeccion
+de las solicitudes pendientes en el arbitro, y la identificacion de
+la solicitud seleccionada.El arbitro es llamado cada ciclo cuando
+hay una o varias solicitudes pendientes. Una rafaga de solicitudes
+se dividen en solicitudes separadas para cada acción de esclavos.
+  
+R[p](-)  es una solicitud R con prioridad P sin bloqueo,y R[p](+)
+es la misma solicitud pero con bloqueo. Para cada ciclo la lista de
+solicitudes se muestar con el seleccionado.
+ 
+ - R[3](-)  
+// solicitud simple es requerida, es seleccionada
+
+- R[3](-) R[4](-)  
+//dos solicitudes, R[3](-) es seleccionada debido a su prioridad
+
+- R[3](-) R[3](-) R[4](-) 
+// error: dos solicitudes tienen la misma prioridad. Abortas, fin de la simulacion!!!!
+
+No importa si la solicitud es parte de una rafaga de solicitudes o
+solo es una solicitud del non-bloking. Cada ciclo la solicitud mas
+apropiado (parcial) es eleccionada. Cuando R[4] es parte de una rafaga
+de peticiones   , esta puede ser interrumpida por R[3], debido a la
+mayor Prioridad.
+
+Cuando el bloqueo esta activado,el comportamiento es ligeramente diferente.No 
+para la primera seleccion de una solicitud pero si para la siguiente solicitud
+emitida por el mismo maestro.
+
+1: R[3](+)
+2: R[3](+)
+// Solicitud simple para el ciclo 1 y 2, no hay conflictos
+
+1: R[3](+)
+2: R[4](+)
+// Solicitud bloqueada en el ciclo 1, pero no es seguida por una solicitud al lado. 
+// R[4] es seleccionada para el ciclo 2.
+
+1: R[4](+)
+2: R[3](-) R[4](+)
+// Solicitud bloqueada en el ciclo 1: selccionado. la solicitud procede de nuevo en el
+ ciclo 2, el bloqueo se mantiene por lo tanto le dara la prioridad mas alta
+// mas espera.
+
+1: R[4](+)
+2: R[3](+) R[4](+)
+// solicitud bloqueda en el ciclo 1: seleccionada. la solicitud procede de nuevo en el
+ ciclo 2, tambien R[4] es seleccionada en el ciclo 2. R[3] espera mas, no tiene encuenta
+ la prioridad mas alta sino el bloqueo por lo tanto es eleccionada la bloqueada
+
+
+3. archivos
+
+ChangeLog
+LEGAL
+Makefile.gcc
+Makefile.defs
+README
+SLIDES.pdf
+simple_bus.cpp:funciones del bus
+
+simple_bus.h: atributos del bus
+
+simple_bus_arbiter.cpp:recibe las solicitud las almacena en un vector y elige la de mas prioridad
+
+simple_bus_arbiter.h: atributos del arbitro
+
+simple_bus_arbiter_if.h:interfaz del arbitro   
+
+simple_bus_blocking_if.h:contiene las funciones de la interfaz blocking
+				lectura o escritura de un simple dato(palabra),
+				tiene en cuenta el estado de la ultima solicitud 
+
+simple_bus_direct_if.h: contiene la interfaz directa con el bus, no necesita solicitud
+
+simple_bus_fast_mem.h:contiene la memoria del esclavo con estados de espera,y realiza las
+                      operaciones correspondientes.
+
+simple_bus_main.cpp:se establece el tiempo de simulacion
+
+simple_bus_master_blocking.cpp:funciones del maestro blocking
+
+simple_bus_master_blocking.h: se definen los atributos del mestro non.blocking
+
+simple_bus_master_direct.cpp:lee los datos que hay en 4 bloques de memoria y los imprime
+
+simple_bus_master_direct.h:se definen los atributos del mestro directo,simepre esta activo para que pueda leere la memoria
+
+simple_bus_master_non_blocking.cpp:funciones del maestro non-blocking
+
+simple_bus_master_non_blocking.h:se definen los atributos del mestro non.blocking
+
+simple_bus_non_blocking_if.h:contiene las funciones de la interfaz non-blocking
+				lectura o escritura de un simple dato(palabra),
+				tiene en cuenta el estado de la ultima solicitud 
+
+simple_bus_request.h:reviza si un maestro tiene bloqueo sino las solicitudes se reciben unicamente
+                     por prioridad.
+
+simple_bus_slave_if.h: mira el status del bus y manada la operacion a ser realizada en la memoria.
+
+simple_bus_slow_mem.h:contiene la memoria del esclavo con estados de espera,y realiza las
+                      operaciones correspondientes.
+
+simple_bus_test.h:El test consiste en una instanciacion de un simple bus con una arbitro,
+cuatro maestros y dos esclavos. ambos modelos de esclavo tienen  una memoria de acceso
+alatorio, la primera memoria no tiene estados de espera y la segunda si.cada maestro
+remite solo una solicitud a una interfaz particular.
+
+simple_bus_tools.cpp: contiene la funcion para poder imprimir
+
+simple_bus_types.cpp:contiene los estados de las solicitudes
+simple_bus_types.h:imprime los estados de las solicitudes
+simple_bus.cpp
+simple_bus.golden
+simple_bus.h
+simple_bus_arbiter.cpp
+simple_bus_arbiter.h
+simple_bus_arbiter_if.h
+simple_bus_blocking_if.h
+simple_bus_direct_if.h
+simple_bus_fast_mem.h
+simple_bus_main.cpp
+simple_bus_master_blocking.cpp
+simple_bus_master_blocking.h
+simple_bus_master_direct.cpp
+simple_bus_master_direct.h
+simple_bus_master_non_blocking.cpp
+simple_bus_master_non_blocking.h
+simple_bus_non_blocking_if.h
+simple_bus_solicitud.h
+simple_bus_slave_if.h
+simple_bus_slow_mem.h
+simple_bus_test.h
+simple_bus_tools.cpp
+simple_bus_types.cpp
+simple_bus_types.h

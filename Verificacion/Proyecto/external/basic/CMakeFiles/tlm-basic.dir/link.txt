@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC    -shared -Wl,-soname,libtlm-basic.so -o libtlm-basic.so CMakeFiles/tlm-basic.dir/bus.cpp.o CMakeFiles/tlm-basic.dir/initiator_socket.cpp.o CMakeFiles/tlm-basic.dir/target_socket.cpp.o  -L/usr/lib/llvm-3.2/lib 

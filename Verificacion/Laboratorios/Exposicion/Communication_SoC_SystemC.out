@@ -1,0 +1,15 @@
+\BOOKMARK [2][]{Outline0.1}{Introducci\363n}{}
+\BOOKMARK [3][]{Outline0.1.1.3}{SystemC-AMS}{Outline0.1}
+\BOOKMARK [2][]{Outline0.2}{Protocolo I2C}{}
+\BOOKMARK [3][]{Outline0.2.1.4}{Transmisi\363n}{Outline0.2}
+\BOOKMARK [3][]{Outline0.2.2.5}{Validaci\363n}{Outline0.2}
+\BOOKMARK [3][]{Outline0.2.3.6}{Comunicaci\363n Multimaster}{Outline0.2}
+\BOOKMARK [2][]{Outline0.3}{Controlador para la arquitectura del bus I2C}{}
+\BOOKMARK [3][]{Outline0.3.1.7}{Arquitectura General y Lenguaje de Modelamiento}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.2.8}{Arquitectura Digital de Bloques}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.3.9}{Bloques Anal\363gicos}{Outline0.3}
+\BOOKMARK [2][]{Outline0.4}{Simulaci\363n del Controlador I2C}{}
+\BOOKMARK [3][]{Outline0.4.1.10}{Simulaci\363n de un Micro-Controlador del Nodo}{Outline0.4}
+\BOOKMARK [3][]{Outline0.4.2.11}{Simulaci\363n de una SoC del Nodo}{Outline0.4}
+\BOOKMARK [3][]{Outline0.4.3.12}{Simulaci\363n Rendimiento}{Outline0.4}
+\BOOKMARK [2][]{Outline0.5}{Bibliograf\355a}{}

@@ -1,0 +1,64 @@
+$date
+     Aug 31, 2010       14:47:35
+$end
+
+$version
+              SystemC 2.2.0 --- Aug 16 2010 17:43:58
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaa  Clock       $end
+$var wire    8  aab  Asignal [7:0]  $end
+$var wire    8  aac  Bsignal [7:0]  $end
+$var wire    8  aad  Ysignal [7:0]  $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+0aaa
+b0 aab
+b0 aac
+b0 aad
+$end
+
+#5
+1aaa
+
+#10
+0aaa
+
+#15
+1aaa
+b10000000 aab
+
+#20
+0aaa
+
+#25
+1aaa
+b0 aab
+b10000000 aac
+
+#30
+0aaa
+
+#35
+1aaa
+b10000001 aab
+b10001010 aac
+b10000000 aad
+
+#40
+0aaa
+
+#45
+1aaa
+

@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Introducci\363n}{}
+\BOOKMARK [1][-]{section.2}{Marco Te\363rico}{}
+\BOOKMARK [2][-]{subsection.2.1}{Bus}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Pol\355ticas de Arbitraje.}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Round Robin}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{TDMA \(Time Division Multiple Access\)}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Fixed priority}{subsection.2.2}
+\BOOKMARK [1][-]{section.3}{An\341lisis de Resultados}{}
+\BOOKMARK [2][-]{subsection.3.1}{Compilaci\363n y ejecuci\363n del ejemplo simple\137bus de SystemC-2.3.0.}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Sistema de bus simple con dos Master Blocking, dos Master not Blocking y un Slave slow memory.}{section.3}
+\BOOKMARK [1][-]{section.4}{Pruebas extras}{}
+\BOOKMARK [1][-]{section.5}{Conclusiones}{}
+\BOOKMARK [1][-]{section*.10}{Referencias}{}

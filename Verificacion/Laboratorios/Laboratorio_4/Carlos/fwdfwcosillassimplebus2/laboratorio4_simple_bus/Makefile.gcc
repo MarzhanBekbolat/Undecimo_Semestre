@@ -1,0 +1,13 @@
+TARGET_ARCH = linux
+
+CC = g++
+OPT    = -O3 
+DEBUG  =    
+CFLAGS = $(DEBUG) $(OPT) -fexceptions
+
+
+MODULE = Metricas
+SRCS = simple_bus.cpp simple_bus_arbiter.cpp simple_bus_main.cpp simple_bus_master_blocking.cpp simple_bus_master_direct.cpp simple_bus_master_non_blocking.cpp simple_bus_tools.cpp simple_bus_types.cpp
+OBJS = $(SRCS:.cpp=.o)
+
+include ./Makefile.defs
