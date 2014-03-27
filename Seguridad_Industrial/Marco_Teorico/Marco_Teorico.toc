@@ -1,0 +1,18 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Marco Te\IeC {\'o}rico}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}M\IeC {\'a}quina Dobladora}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Cortadora Hidr\IeC {\'a}ulica}{3}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Soldadura Aut\IeC {\'o}gena}{3}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}Acetileno}{3}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Ox\IeC {\'\i }geno}{4}{subsubsection.1.3.2}
+\contentsline {subsection}{\numberline {1.4}Guantes}{4}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Cascos}{4}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Protector auditivo}{4}{subsection.1.6}
+\contentsline {subsubsection}{\numberline {1.6.1}Tap\IeC {\'o}n auditivo}{4}{subsubsection.1.6.1}
+\contentsline {subsubsection}{\numberline {1.6.2}Orejera}{4}{subsubsection.1.6.2}
+\contentsline {subsection}{\numberline {1.7}Botas}{4}{subsection.1.7}
+\contentsline {subsubsection}{\numberline {1.7.1}Puntera protectora}{4}{subsubsection.1.7.1}
+\contentsline {subsubsection}{\numberline {1.7.2}Entresuela}{5}{subsubsection.1.7.2}
+\contentsline {subsubsection}{\numberline {1.7.3}Lote}{5}{subsubsection.1.7.3}
+\contentsline {subsubsection}{\numberline {1.7.4}Muestra}{5}{subsubsection.1.7.4}
+\contentsline {subsection}{\numberline {1.8}Overol}{5}{subsection.1.8}
